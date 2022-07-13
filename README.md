@@ -2,7 +2,7 @@
 [Server Repo](https://github.com/Emily-Herndon/Ensemble-Server)
 
 ### Developed by:
-Billy Lu, Emily Herndon, Emily Kiss
+Billy Lu, Emily Herndon, Emily Kiss, Angelika Selviyan
 
 ### Description:
 Picture this. It's a frosty winter morning, and you wake up to the sound of snow pattering against your window. You need to leave for work in ten minutes, and you forgot to pick out your outfit last night! You're so cozy, but you need to get out of your bed, walk on your cold floor, and spend a few minutes browsing through your closet. Is your blue shirt in the laundry? Yes, it is. But you just spent three minutes looking for it.
