@@ -1,59 +1,70 @@
-# Ensemble-Client
-[Server Repo](https://github.com/Emily-Herndon/Ensemble-Server)
+# Getting Started with Create React App
 
-### Developed by:
-Billy Lu, Emily Herndon, Emily Kiss, Angelika Selviyan
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Description:
-Picture this. It's a frosty winter morning, and you wake up to the sound of snow pattering against your window. You need to leave for work in ten minutes, and you forgot to pick out your outfit last night! You're so cozy, but you need to get out of your bed, walk on your cold floor, and spend a few minutes browsing through your closet. Is your blue shirt in the laundry? Yes, it is. But you just spent three minutes looking for it.
+## Available Scripts
 
-So sad. 
+In the project directory, you can run:
 
-With Ensemble you wont have this problem. You can access your whole closet at the tip of your fingers. Say goodbye to cold, hardwood floors and hello to warm feet in your fluffy blanket.
+### `npm start`
 
-Ensemble allows you to add, delete and constantly virtually update your closet. 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Technologies Used:
-* React
-* Node/Express
-* MongoDB
-* Tailwind
-* Axios
-* Cloudinary
-* Multer
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## User Stories:
-* As a logged out user, I want to be able to register an account.
-* As a logged out user, I want to be able to log in to my account.
-* As a logged in user, I want to upload each clothing piece in my closet.
-* As a logged in user, I want my closet & outfit choices to be visible only to me.
-* As a logged in user, I want to see each piece clothing.
-* As a logged in user, I want to be able to edit a piece of uploaded clothing (unless I specifically share them).
-* As a logged in user, I want to be able to delete a piece of uploaded clothing.
-* As a logged in user, I want be able to visualize an outfit without leaving my bed.
-* As a logged in user, I want be able to save my favorite combinations of clothing.
+### `npm test`
 
-## MVP Requirements:
-- [ ] User able to upload photos of each of their clothing items
-- [ ] User able to categorize outfit pieces
-- [ ] The app has full CRUD functionality
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Stretch Goals:
-- [ ] User able to see pieces together/ clothing pieces displayed in stacked carousels 
-- [ ] Accessories component
-- [ ] AI models for clothing
-- [ ] Users are able to publicly post outfits
-- [ ] Clothing displays on a carousel
-- [ ] User able to visualize outfit on themselves
-- [ ] User able to choose from selection of premade color themes
-- [ ] User able to make their own color theme
+### `npm run build`
 
-## Views:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-![](https://i.imgur.com/nahQOsL.png)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## RESTful Routing Chart:
-![](https://i.imgur.com/GV0Om2R.png)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## ERD:
-![](https://i.imgur.com/T6E4Cpw.png)
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
