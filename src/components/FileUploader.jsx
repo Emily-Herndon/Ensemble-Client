@@ -1,5 +1,9 @@
 import React from "react"
 
 export default function FileUploader() {
-	return <div>FileUploader</div>
+	return (
+		<div>
+			FileUploader
+		</div>
+	)
 }

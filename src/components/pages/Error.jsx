@@ -7,7 +7,7 @@ export default function Error() {
 				width="480"
 				height="270"
 				frameBorder="0"
-				class="giphy-embed"
+				className="giphy-embed"
 				allowFullScreen
 			></iframe>
 			<p>

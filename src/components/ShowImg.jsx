@@ -1,5 +1,9 @@
 import React from "react"
 
-export default function ShowImg() {
-	return <div>ShowImg</div>
+export default function ShowImg({imgURL,imgWidth,imgHeight}) {
+	return (
+		<div>
+			ShowImg
+		</div>
+	)
 }
