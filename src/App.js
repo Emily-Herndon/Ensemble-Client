@@ -4,6 +4,7 @@ import NavBar from "./components/Navbar"
 import { Navigate } from "react-router-dom"
 import Login from "./components/pages/Login"
 import Feed from "./components/pages/Feed"
+import Account from './components/pages/Account'
 import Register from "./components/pages/Register"
 // import NewClothes from "./components/pages/NewClothes"
 import OutfitPicker from "./components/pages/OutfitPicker"
@@ -112,6 +113,11 @@ function App() {
 						<Route
 							path="/testpageimguploader"
 							element={<TestPageImgUploader />}
+						/>
+
+						<Route 
+							path='/account'
+							element={<Account />}
 						/>
 					</Routes>
 				</div>

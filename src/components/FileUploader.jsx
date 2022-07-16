@@ -30,7 +30,9 @@ export default function FileUploader({imgFile, setImgFile}) {
 			// console.log(e.target.files[0])
 			//sets selected file with the file selected
 			setSelectedFile(e.target.files[0])
-			setImgFile(e.target.files[0])
+			const fd = new FormData()
+			fd.append("image", e.target.files[0])
+			setImgFile(fd)
 			console.log("input completed?")
 		}
 
@@ -75,6 +77,7 @@ export default function FileUploader({imgFile, setImgFile}) {
                     type="file"
                     id="image"
 					className="max-h-[50px]"
+					required
 					onInput={e => {
 						handleFileInput(e)
 					}}
