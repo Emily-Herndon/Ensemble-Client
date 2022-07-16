@@ -22,7 +22,7 @@ function App() {
 		clothesName: '',
 		category: '',
 		status: '',
-		imageUrl: '',
+		imageFile: '',
 		user:''
 	})
 	const [clothes, setClothes] = useState([])
@@ -34,8 +34,10 @@ function App() {
 		//if there is a token then...
 		if(token) {
 			//decode it and set the user in app state
-			setCurrentUser(jwt_decode(token))
+			const decoded = jwt_decode(token)
+			setCurrentUser(decoded)
 			setAuthed(jwt_decode(token))
+			setClothesForm({...clothesForm, user: decoded.id})
 		}else{
 			setCurrentUser(null)
 		}
@@ -85,6 +87,8 @@ function App() {
 								clothesForm={clothesForm}
 								setClothesForm={setClothesForm}
 								clothes={clothes}
+								setClothes={setClothes}
+								currentUser={currentUser}
 							/>}
 						/>
 						<Route

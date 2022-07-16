@@ -1,8 +1,7 @@
 import {useState, useEffect} from "react"
 import axios from "axios"
 
-export default function FileUploader({imgId,setImgId}) {
-	const [imgFile, setImgFile] = useState(null)
+export default function FileUploader({imgFile, setImgFile}) {
 	const [selectedFile, setSelectedFile] = useState(undefined)
     const [preview, setPreview] = useState(undefined)
 
@@ -28,9 +27,10 @@ export default function FileUploader({imgId,setImgId}) {
 				setSelectedFile(undefined)
 				return
 			}
-			console.log(e.target.files[0])
+			// console.log(e.target.files[0])
 			//sets selected file with the file selected
 			setSelectedFile(e.target.files[0])
+			setImgFile(e.target.files[0])
 			console.log("input completed?")
 		}
 
@@ -48,7 +48,7 @@ export default function FileUploader({imgId,setImgId}) {
 	
 	return (
 		<div
-		className="max-h-[200px] border"
+		className="max-h-[200px] text-pink-400"
 		>
 			FileUploader
 			{/* image preview */}
@@ -57,7 +57,7 @@ export default function FileUploader({imgId,setImgId}) {
 			>
 				{selectedFile 
 				&& 
-				<img src={preview} className="object-fill max-h-[100px]"/>
+				<img src={preview} className="object-fill max-h-[100px] text-pink-400"/>
 				// <img src={preview} className={`object-contain h-[10px] w-[10px]`}/>
 				}
 			</div>
