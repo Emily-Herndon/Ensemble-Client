@@ -1,14 +1,14 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { Navigate } from "react-router-dom"
 import jwt_decode from "jwt-decode"
 import axios from "axios"
 
 
-export default function Register({currentUser, setCurrentUser}) {
+export default function Register({ currentUser, setCurrentUser }) {
 	const divStyles = "py-3"
 	const buttonStyles = "rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8"
 	const inputStyles = "border-2 border-pink-500 p-2 rounded-lg text-pink-500 font-semibold placeholder-pink-400"
-	
+
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [userName, setUserName] = useState('')
@@ -42,64 +42,70 @@ export default function Register({currentUser, setCurrentUser}) {
 			// set Current user with decoded token
 			setCurrentUser(decoded)
 
-		} catch (error) {
-			console.warn(error)
+		} catch (err) {
+			console.warn(err)
+			if (err.response) {
+				if (err.response.status === 400) {
+					console.log(err.response.data.msg)
+					setMsg(err.response.data.msg)
+				}
+			}
 		}
 	}
-	useEffect(()=>{
+	// useEffect(() => {
 		if (currentUser) {
 			//then send them to profile page
-			 <Navigate to='/profile' />
-		  }
-	},[])
+			<Navigate to='/profile' />
+		}
+	// }, [])
 
 
 	return (
 		<div className="">
-			<form 
+			<form
 				className="mt-12"
 				onSubmit={handleRegisterSubmit}
 			>
 				<div
-				className={divStyles}
+					className={divStyles}
 				>
 					<label htmlFor="firstName" hidden>Enter First Name</label>
 					<input
 						id='firstName'
 						className={inputStyles}
 						placeholder="First Name"
-						value = {firstName}
-						onChange = {e => setFirstName(e.target.value)}
+						value={firstName}
+						onChange={e => setFirstName(e.target.value)}
 					/>
 				</div>
 
 				<div
-				className={divStyles}
+					className={divStyles}
 				>
 					<label htmlFor="lastName" hidden>Enter Last Name</label>
 					<input
 						id='lastName'
 						className={inputStyles}
 						placeholder="Last Name"
-						value = {lastName}
-						onChange = {e => setLastName(e.target.value)}
+						value={lastName}
+						onChange={e => setLastName(e.target.value)}
 					/>
 				</div>
 
 				<div
-				className={divStyles}
+					className={divStyles}
 				>
 					<label htmlFor="userName" hidden>Enter Username</label>
 					<input
 						id="userName"
 						className={inputStyles}
 						placeholder="Username"
-						value = {userName}
-						onChange = {e => setUserName(e.target.value)}
+						value={userName}
+						onChange={e => setUserName(e.target.value)}
 					/>
 				</div>
 				<div
-				className={divStyles}
+					className={divStyles}
 				>
 					<label htmlFor="email" hidden>Enter Email</label>
 					<input
@@ -107,12 +113,12 @@ export default function Register({currentUser, setCurrentUser}) {
 						className={inputStyles}
 						placeholder="Email"
 						type="email"
-						value = {email}
-						onChange = {e => setEmail(e.target.value)}
+						value={email}
+						onChange={e => setEmail(e.target.value)}
 					/>
 				</div>
 				<div
-				className={divStyles}
+					className={divStyles}
 				>
 					<label htmlFor="password" hidden>Enter Password</label>
 					<input
@@ -120,9 +126,12 @@ export default function Register({currentUser, setCurrentUser}) {
 						className={inputStyles}
 						placeholder="Password"
 						type="password"
-						value = {password}
-						onChange = {e => setPassword(e.target.value)}
+						value={password}
+						onChange={e => setPassword(e.target.value)}
 					/>
+				</div>
+				<div>
+				{msg}
 				</div>
 				<button
 					className={buttonStyles}

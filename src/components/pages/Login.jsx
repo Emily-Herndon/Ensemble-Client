@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import jwt_decode from 'jwt-decode'
 import { Navigate } from "react-router-dom"
 
 
-export default function Login(setCurrentUser, currentUser) {
+export default function Login({setCurrentUser, currentUser}) {
 	const buttonStyles = "rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8"
 	const inputStyles = "border-2 border-pink-500 p-2 rounded-lg text-pink-500 font-semibold placeholder-pink-400"
 	const divStyles = "py-3"
@@ -37,22 +37,24 @@ export default function Login(setCurrentUser, currentUser) {
 			setCurrentUser(decoded)
 		}catch (err){
 			if (err.res) {
-        if (err.res.status === 400) {
-          setMsg(err.res.data.msg)
-        }
+				if (err.res.status === 400) {
+					setMsg(err.res.data.msg)
+				}
       }
 	}
   }
   console.log(currentUser)
 //if currentUser is logged in 
-   if (currentUser) {
-	//then send them to profile page
-     <Navigate to='/profile' />
-  }
+
+	if (currentUser) {
+		//then send them to profile page
+		 <Navigate to='/profile' />
+	  }
+
 
 	return (
 		<div>
-			{currentUser && (<Navigate to='/profile' />)}
+			{/* {currentUser != null && (<Navigate to='/profile' />)} */}
 			<h1 className="text-4xl text-pink-400 font-semibold p-6">Welcome Back!</h1>
 			<form onSubmit={handleSubmit}>
 				<div className={divStyles}>

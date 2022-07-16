@@ -1,9 +1,13 @@
-import React from "react"
+import {useEffect} from "react"
 import {Link} from "react-router-dom"
 import { Navbar as Nav} from 'flowbite-react'
 
 export default function Navbar({currentUser, handleLogout}) {
 	const navStyle = "hover:text-pink-600 block py-2 pr-4 pl-3 rounded text-pink-400 md:p-0 font-semibold my-6"
+	
+	
+	
+	
 	const loggedOut = (
 		<>
 			<Link 

@@ -6,16 +6,17 @@ import jwt_decode from "jwt-decode"
 export default function Profile({clothes, setClothes,  clothesForm, setClothesForm, currentUser}) {
 	const [msg, setMsg] = useState('')
 	
-
 	useEffect(() => {
 		const clothesGetter = async () => {
-			// try {
-			// 	const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users`)
-			// 	setClothes(response.data)
-			// } catch (error) {
-			// 	console.log(error)
-			// }
-			
+			try {
+				const token = localStorage.getItem('jwt')
+				const decoded = jwt_decode(token)
+				const userName = decoded.userName
+				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
+				setClothes(response.data.clothes)
+			} catch (error) {
+				console.log(error)
+			}
 		}
 		clothesGetter()
 	},[])
@@ -24,10 +25,18 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 		e.preventDefault()
 		try {
 			const fd = new FormData()
+			console.log("imageFile",clothesForm.imageFile)
 			fd.append("image", clothesForm.imageFile)
-			fd.append("user", clothesForm.user)
-			fd.append("category", clothesForm.category)
-			fd.append("clothesName", clothesForm.clothesName)
+			console.log("fd",fd)
+			
+
+			const reqBody = {
+				clothesName:clothesForm.clothesName,
+				category:clothesForm.category,
+				status:clothesForm.status,
+				user:clothesForm.user
+			}
+
 			console.log("clothesForm on submit",clothesForm)
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/clothes`, fd)
 			// console.log(response.data)
@@ -49,12 +58,13 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 	}
 
 	const priority = {
-		shoes: 3,
+		shoes: 4,
+		onePiece:3,
 		bottom:2,
 		top:1
 	}
-	console.log(clothes)
-	const sortedClothes = clothes.sort((a, b) => priority[b.category] > priority[a.category] ? 1 : -1)
+	// console.log(clothes)
+	const sortedClothes = clothes.sort((a, b) => priority[b.category] > priority[a.category] ? -1 : 1)
 		.map((clothing) =>
 			<div key={`${clothing._id}`}> {clothing.clothesName} </div>
 		)

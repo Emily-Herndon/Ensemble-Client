@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom"
 import Login from "./components/pages/Login"
 import Feed from "./components/pages/Feed"
 import Register from "./components/pages/Register"
-import NewClothes from "./components/pages/NewClothes"
+// import NewClothes from "./components/pages/NewClothes"
 import OutfitPicker from "./components/pages/OutfitPicker"
 import Profile from "./components/pages/Profile"
 import Error from "./components/pages/Error"
@@ -17,7 +17,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null)
-	const [authed, setAuthed] = useState(null)
+	// const [authed, setAuthed] = useState(null)
 	const [clothesForm, setClothesForm] = useState({
 		clothesName: '',
 		category: '',
@@ -36,7 +36,7 @@ function App() {
 			//decode it and set the user in app state
 			const decoded = jwt_decode(token)
 			setCurrentUser(decoded)
-			setAuthed(jwt_decode(token))
+			// setAuthed(jwt_decode(token))
 			setClothesForm({...clothesForm, user: decoded.id})
 		}else{
 			setCurrentUser(null)
@@ -52,7 +52,7 @@ function App() {
 		  localStorage.removeItem('jwt')
 		  // set the user in the App state to be null
 		  setCurrentUser(null)
-		  setAuthed(null)
+		//   setAuthed(null)
 		}
 	  }
 
