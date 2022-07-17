@@ -117,7 +117,10 @@ function App() {
 
 						<Route 
 							path='/account'
-							element={<Account />}
+							element={<Account 
+							currentUser={currentUser}
+							setCurrentUser={setCurrentUser}
+							/>}
 						/>
 					</Routes>
 				</div>

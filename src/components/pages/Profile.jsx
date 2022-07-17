@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useState,useEffect} from 'react'
 import NewClothes from './NewClothes'
 import jwt_decode from "jwt-decode"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function Profile({clothes, setClothes,  clothesForm, setClothesForm, currentUser}) {
 	const [msg, setMsg] = useState('')
@@ -10,8 +10,8 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 	const [editClothingModal, setEditClothingModal] = useState(false)
 	const [clothing, setClothing] = useState({
 		clothesName: '',
-		category: '',
-		status: '',
+		category: 'default',
+		status: 'default',
 		imageFile: '',
 		user:''
 	})
@@ -32,6 +32,7 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 		}
 		clothesGetter()
 	},[])
+
 	const handleEditClothesClick = (clothing) => {
 		console.log(clothing)
 		setClothesForm(clothing)
@@ -70,6 +71,7 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 			const imgResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/images/upload`, clothesForm.imageFile)
 			// console.log(imgResponse.data)
 			
+			console.log("clothesForm",clothesForm)
 
 			const reqBody = {
 				clothesName:clothesForm.clothesName,
@@ -118,6 +120,14 @@ export default function Profile({clothes, setClothes,  clothesForm, setClothesFo
 					onClick={()=>handleEditClothesClick(clothing)}
 				>
 					Edit
+				</button>
+				<button
+					className="rounded-lg text-white font-semibold p-2 bg-red-600 hover:bg-red-700 my-8" 
+					type="button" 
+					data-modal-toggle="clothing-modal" 
+					onClick={()=>handleEditClothesClick(clothing)}
+				>
+					Delete
 				</button>
 			</div>
 
