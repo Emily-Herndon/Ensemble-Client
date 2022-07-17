@@ -2,9 +2,10 @@ import React from 'react'
 import {useState, useEffect } from 'react'
 import jwt_decode from "jwt-decode"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Account({setCurrentUser, currentUser}) {
-  
+  const navigate = useNavigate()
   const [updatedUser, setUpdatedUser] = useState({
     firstName:"",
     lastName:"",
@@ -34,13 +35,14 @@ export default function Account({setCurrentUser, currentUser}) {
     e.preventDefault()
     console.log('hi')
     try {
-      console.log('CURRENT USER',currentUser)
-      console.log('UPDATED USER',updatedUser)
+      // console.log('CURRENT USER',currentUser)
+      // console.log('UPDATED USER',updatedUser)
       const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`, updatedUser)
       const getResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`)
-      console.log('getresponse data 🧐',getResponse.data)
+      // console.log('getresponse data 🧐',getResponse.data)
+      navigate('/profile')
     } catch (error) {
-      
+      console.warn(error)
     }
   }
 
