@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import FileUploader from '../FileUploader'
+import FileUploader from './FileUploader'
 
 export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, setClothingModal, setClothing, clothing }) {
 
@@ -95,11 +95,13 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 											<option className='border-2 border-pink-400 focus:text-pink-400 focus:ring-pink-400' value='needsRepair'>Needs Repair</option>
 										</select>
 
-										<div className='border-2 rounded border-pink-500 m-4 text-pink-500 font-semibold'>
+										<div className='flex justify-center border-2 rounded border-pink-500 m-4 text-pink-500 font-semibold'>
 											{
 												clothesForm.imageId
 												? 
-												<img src={clothesForm.imageId.imgUrl}/>
+												<img
+												className="w-auto h-[200px]"
+												src={clothesForm.imageId.imgUrl}/>
 		
 												:
 												<FileUploader

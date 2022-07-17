@@ -90,6 +90,7 @@ function App() {
 								clothes={clothes}
 								setClothes={setClothes}
 								currentUser={currentUser}
+								setCurrentUser={setCurrentUser}
 							/>}
 						/>
 						<Route
