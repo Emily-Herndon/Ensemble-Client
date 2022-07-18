@@ -1,6 +1,7 @@
 import {useEffect} from "react"
 import {Link} from "react-router-dom"
 import { Navbar as Nav} from 'flowbite-react'
+import { DarkThemeToggle } from "flowbite-react"
 
 export default function Navbar({currentUser, handleLogout}) {
 	
@@ -33,6 +34,11 @@ export default function Navbar({currentUser, handleLogout}) {
 			className={navStyle}
 			onClick= {handleLogout}
 			to="/login">Logout</Link>
+			<DarkThemeToggle />
+			<div class="flex justify-end items-center space-x-2 mx-auto relative">
+  			<span class="text-xs font-extralight">Light </span>
+  			<span class="text-xs font-semibold">Dark</span>
+			</div>
 			{/* <Link></Link> */}
 		</>	
 	)

@@ -22,3 +22,10 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
+
+
+#checkbox:checked + label .switch-ball{
+      background-color: white;
+      transform: translateX(24px);
+      transition: transform 0.3s linear;
+}

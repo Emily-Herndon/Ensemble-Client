@@ -11,41 +11,41 @@ export default function OutfitPicker({ clothes }) {
 	const [accessories, setAccessories] = useState([])
 
 
-	const carousel = () => {
+	// const carousel = () => {
 
-		clothes.filter(clothing => {
-			   if(clothing.category === 'top'){
-				   setTops(clothing)
-			   }else if(clothing.category === 'bottom'){
-				   setBottoms(clothing)
-			   } else if (clothing.category === 'shoes'){
-				   setShoes(clothing)
-			   } else if (clothing.category === 'one piece') {
-				   setOnePieces(clothing)
-			   } else if (clothing.category === 'accessories') {
-				   setAccessories(clothing)
-			   }
-	   })
-	}
-		carousel()
+	// 	clothes.filter(clothing => {
+	// 		   if(clothing.category === 'top'){
+	// 			   setTops(clothing)
+	// 		   }else if(clothing.category === 'bottom'){
+	// 			   setBottoms(clothing)
+	// 		   } else if (clothing.category === 'shoes'){
+	// 			   setShoes(clothing)
+	// 		   } else if (clothing.category === 'one piece') {
+	// 			   setOnePieces(clothing)
+	// 		   } else if (clothing.category === 'accessories') {
+	// 			   setAccessories(clothing)
+	// 		   }
+	//    })
+	// }
+	// 	carousel()
 	
 
-	const topMap = tops.map(top => {
-		return (
-			<div>
-				<img src= {top.imageId.imgUrl}/>
-				<p> {top.clothesName} </p>
-			</div>
-		)
-	})
-	return (
-		<div>
-			OutfitPicker
-			<Carousel>
-				{topMap}
-		    </Carousel>
-		</div>
-	)
+	// const topMap = tops.map(top => {
+	// 	return (
+	// 		<div>
+	// 			<img src= {top.imageId.imgUrl}/>
+	// 			<p> {top.clothesName} </p>
+	// 		</div>
+	// 	)
+	// })
+	// return (
+	// 	<div>
+	// 		OutfitPicker
+	// 		<Carousel>
+	// 			{topMap}
+	// 	    </Carousel>
+	// 	</div>
+	// )
 }
 // ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
