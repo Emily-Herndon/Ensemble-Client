@@ -110,7 +110,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
             </button>
            
             <div className="py-6 px-6 lg:px-8">
-              <h3 className="text-2xl block mb-2 text-pink-500 font-semibold pb-4">Edit Your Account Information</h3>
+              <h3 className="text-1xl text-black font-press-start p-6">Edit Your Account Information</h3>
 
               <form onSubmit={(e) => handleAccountEditSubmit(e, updatedUser)} className="space-y-6" action="#">
 
