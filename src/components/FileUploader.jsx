@@ -55,7 +55,7 @@ export default function FileUploader({imgFile, setImgFile}) {
 			FileUploader
 			{/* image preview */}
 			<div
-			className=""
+			className="flex justify-center"
 			>
 				{selectedFile 
 				&& 

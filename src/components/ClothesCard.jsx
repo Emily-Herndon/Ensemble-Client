@@ -2,18 +2,20 @@ import React from "react"
 import ShowImg from "./ShowImg"
 
 export default function ShowClothes({ clothing, handleEditClothesClick, handleDeleteClothesClick }) {
+	
+
 	return (
 		<div
-		className="border rounded-xl h-[400px] w-[300px]"
+			className="border rounded-xl h-[400px] w-[300px]"
 		>
 			<div
-			className="h-[70%] flex justify-center"
+				className="h-[70%] flex justify-center"
 			>
 
 			<img
-			className="object-contain" 
-			src={clothing.imageId.imgUrl} 
-			alt={clothing.clothesName} />
+				className="object-contain" 
+				src={clothing.imageId.imgUrl} 
+				alt={clothing.clothesName} />
 			</div>
 			{clothing.clothesName} {clothing.status}
 			<button

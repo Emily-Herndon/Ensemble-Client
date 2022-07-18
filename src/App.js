@@ -6,6 +6,7 @@ import Login from "./components/pages/Login"
 import Feed from "./components/pages/Feed"
 import Account from './components/pages/Account'
 import Register from "./components/pages/Register"
+import PasswordModal from "./components/pages/PasswordModal"
 // import NewClothes from "./components/pages/NewClothes"
 import OutfitPicker from "./components/pages/OutfitPicker"
 import Profile from "./components/pages/Profile"
@@ -116,13 +117,6 @@ function App() {
 							element={<TestPageImgUploader />}
 						/>
 
-						<Route 
-							path='/account'
-							element={<Account 
-							currentUser={currentUser}
-							setCurrentUser={setCurrentUser}
-							/>}
-						/>
 					</Routes>
 				</div>
 			</Router>
