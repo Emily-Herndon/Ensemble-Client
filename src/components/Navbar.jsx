@@ -37,6 +37,15 @@ export default function Navbar({currentUser, handleLogout}) {
 			<DarkThemeToggle />
 			<div class="flex justify-end items-center space-x-2 mx-auto relative">
   			<span class="text-xs font-extralight">Light </span>
+			<div>
+  <input type="checkbox" name="" id="checkbox" class="hidden" />
+  <label for="checkbox" class="cursor-pointer">
+    <div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p2">
+      <div class="w-4 h-4 bg-white rounded-full shadow"></div>
+    </div>
+  </label>
+</div>
+
   			<span class="text-xs font-semibold">Dark</span>
 			</div>
 			{/* <Link></Link> */}
