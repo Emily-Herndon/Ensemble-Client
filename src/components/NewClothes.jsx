@@ -99,7 +99,7 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 											<option value='Needs-Repair'>Needs Repair</option>
 										</select>
 
-										<div className='flex justify-center border-2 rounded border-pink-500 m-4 text-pink-500 font-semibold'>
+										<div className='flex justify-center border-2 border-black m-4 text-black font-semibold'>
 											{
 												clothesForm.imageId
 												? 
