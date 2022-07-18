@@ -16,6 +16,7 @@ import jwt_decode from 'jwt-decode'
 import {useState, useEffect} from "react"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import axios from "axios"
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null)
@@ -40,10 +41,17 @@ function App() {
 			setCurrentUser(decoded)
 			// setAuthed(jwt_decode(token))
 			setClothesForm({...clothesForm, user: decoded.id})
+			
 		}else{
 			setCurrentUser(null)
 		}
-
+		const getUserClothes = async () => {
+			const userName = currentUser.userName
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
+			console.log(response.data)
+			setClothes(response.data.clothes)
+		}
+		getUserClothes()
 	}, [])
 
 
@@ -104,7 +112,9 @@ function App() {
 						/> */}
 						<Route
 							path="/outfitpicker"
-							element={<OutfitPicker />}
+							element={<OutfitPicker 
+								clothes={clothes}
+							/>}
 						/>
 						<Route
 							path="/error"

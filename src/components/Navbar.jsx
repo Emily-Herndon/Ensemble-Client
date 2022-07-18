@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import { Navbar as Nav} from 'flowbite-react'
 
 export default function Navbar({currentUser, handleLogout}) {
-	const navStyle = "hover:text-pink-600 block py-2 pr-4 pl-3 rounded text-pink-400 md:p-0 font-semibold my-6"
+	const navStyle = "hover:text-gray-700 block py-2 pr-4 pl-3 rounded text-gray-500 md:p-0 font-semibold my-6"
 		
 	const loggedOut = (
 		<>
@@ -38,7 +38,7 @@ export default function Navbar({currentUser, handleLogout}) {
 	return (
 		<Nav fluid={true} rounded={true}>
 			<Nav.Brand href="/">
-				<span className="font-extrabold text-transparent text-1xl bg-clip-text bg-gradient-to-r from-pink-600 to-pink-400 my-6">
+				<span className="font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-gray-400 to-gray-500 my-6">
 				Ensemble
 				</span>
 			</Nav.Brand>
