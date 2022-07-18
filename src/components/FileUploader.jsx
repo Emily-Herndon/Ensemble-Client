@@ -50,7 +50,7 @@ export default function FileUploader({imgFile, setImgFile}) {
 	
 	return (
 		<div
-		className="max-h-[200px] text-pink-400"
+		className="max-h-[200px] font-press-start text-[8px] text-black"
 		>
 			FileUploader
 			{/* image preview */}
@@ -59,7 +59,7 @@ export default function FileUploader({imgFile, setImgFile}) {
 			>
 				{selectedFile 
 				&& 
-				<img src={preview} className="object-fill max-h-[100px] text-pink-400"/>
+				<img src={preview} className="object-fill max-h-[100px] font-press-start text-[12px] text-black"/>
 				// <img src={preview} className={`object-contain h-[10px] w-[10px]`}/>
 				}
 			</div>

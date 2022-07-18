@@ -8,7 +8,11 @@ module.exports = {
       	'md': '768px',
 		'lg': '1024px',
     },
-		extend: {},
+		extend: {
+			fontFamily: {
+        	'press-start': ['"Press Start 2P"', 'cursive'],
+      },
+		},
 	},
 	plugins: [
         require('flowbite/plugin')

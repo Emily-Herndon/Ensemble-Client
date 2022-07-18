@@ -6,17 +6,23 @@ body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
+		sans-serif, 'Press Start 2P';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: rgb(216, 212, 212);
-
-	/* background-image: linear-gradient(
-    to right,
-    rgb(104, 104, 104),
-    rgb(68, 67, 65)
-  ); */
-  /* background-image: url("../public/images/Zebra.jpg"); */
+	background-color: #c0c0c0;
+  --border-width: 1px;
+  --border-raised-outer: inset -1px -1px var(--window-frame),
+    inset 1px 1px var(--button-highlight);
+  --border-raised-inner: inset -2px -2px var(--button-shadow),
+    inset 2px 2px var(--button-face);
+  --border-sunken-outer: inset -1px -1px var(--button-highlight),
+    inset 1px 1px var(--window-frame);
+  --border-sunken-inner: inset -2px -2px var(--button-face),
+    inset 2px 2px var(--button-shadow);
+  --border-window-outer: inset -1px -1px var(--window-frame),
+    inset 1px 1px var(--button-face);
+  --border-window-inner: inset -2px -2px var(--button-shadow),
+    inset 2px 2px var(--button-highlight);
 }
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -24,8 +30,4 @@ code {
 }
 
 
-#checkbox:checked + label .switch-ball{
-      background-color: white;
-      transform: translateX(24px);
-      transition: transform 0.3s linear;
-}
+

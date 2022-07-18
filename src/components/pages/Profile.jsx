@@ -22,6 +22,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [showCat, setShowCat] = useState([])
 	const [tags, setTags] = useState([])
 	const [tagModal, setTagModal] = useState(false)
+	const [tagModalType, setTagModalType] = useState("")
+	const [selectedTags, setSelectedTags] = useState([])
 	const [tagForm, setTagForm] = useState({
         tagName: ""
     })
@@ -43,19 +45,9 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				setCurrentUser(decoded)
 				const userName = decoded.userName
 				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
-				console.log(response.data)
+				console.log("RESPONSE DATA FOR USER PROFILE GET",response.data)
 				setClothes(response.data.clothes)
-
-				// all clothes but sorted by priority
-
-
-
-				// filter bottoms out of response
-
-
-				// filter one piece out of response
-
-
+				setTags(response.data.tags)
 			} catch (error) {
 				console.log(error)
 			}
@@ -94,7 +86,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			const sortedAllClothes = clothes.sort((a, b) => priority[b.category] > priority[a.category] ? -1 : 1)
 			setShowCat(sortedAllClothes)
 		}
-		console.log(showCat)
+		// console.log(showCat)
 	}, [selectCat, clothes])
 
 	// when you click the edit button on a clothing item
@@ -126,6 +118,13 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	// when you click on the create a tag button 
 	const  handleCreateTagsClick = () => {
 		setTagModal(true)
+		setTagModalType("create")
+	}
+	// when you click on the add tags button
+	const handleAddTagsClick= (clothing) =>  {
+		setTagModal(true)
+		setTagModalType("add")
+		setSelectedTags(clothing.tags)
 	}
 	// when you create a tag
 	const handleTagSubmit = async (e, tagForm) => {
@@ -143,6 +142,20 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				tagName: ""
 			})
 			setTagModal(false)
+		} catch (err) {
+			console.warn(err)
+			if (err.response) {
+				if (err.response.status === 400) {
+					setMsg(err.response.data.msg)
+				}
+			}
+		}
+	}
+	// when you add tags to a clothing item
+	const handleAddTagsSubmit = async e => {
+		e.preventDefault()
+		try {
+			console.log(selectedTags)
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -249,14 +262,14 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	}
 	// console.log(clothes)
 
-
+	const buttonStyle = "text-[8px] border-2 border-black w-[105px] h-[43px] text-black m-2 font-press-start font-light p-2 bg-white hover:border-dotted my-8"
 
 	return (
 		<>
 			{currentUser ?
 
 				<div className='content-center'>
-					<div className="text-4xl text-white font-semibold p-6">Hey there! Welcome to your profile {currentUser.userName}.</div>
+					<div className="text-1xl text-black font-press-start p-6">Hey there! Welcome to your profile, {currentUser.userName}.</div>
 
 					{clothingModal ?
 						<NewClothes
@@ -283,43 +296,37 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					}
 
 
-					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
-					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" onClick={() => handleAccountClick()}>Edit Account</button>
-					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing Item</button>
-					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button>
-
-
 					<div
 						className='flex flex-row justify-center'
 					>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] mb-8 bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("all") }}
 						>All</div>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("top") }}
 						>Tops</div>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("bottom") }}
 						>Bottoms</div>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("onePiece") }}
 						>One Pieces</div>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("shoes") }}
 						>Shoes</div>
 
 						<div
-							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
+							className={buttonStyle}
 							onClick={() => { setSelectCat("accessory") }}
 						>Accessories</div>
 					</div>
@@ -359,6 +366,11 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						handleSubmit={handleTagSubmit}
 						tagForm={tagForm}
 						setTagForm={setTagForm}
+						tagModalType={tagModalType}
+						selectedTags={selectedTags}
+						setSelectedTags={setSelectedTags}
+						tags={tags}
+						handleAddTagsSubmit={handleAddTagsSubmit}
 						/>
 						:
 						""
@@ -374,12 +386,21 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 								clothes={showCat}
 								handleEditClothesClick={handleEditClothesClick}
 								handleDeleteClothesClick={handleDeleteClothesClick}
+								handleAddTagsClick={handleAddTagsClick}
+								selectedTags={selectedTags}
+								setSelectedTags={setSelectedTags}
 							/>
 						</div>
 					</div>
 
 				</div>
 				: "Loading"}
+
+				<button className={buttonStyle} type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
+				<button className={buttonStyle} type="button" onClick={() => handleAccountClick()}>Edit Account</button>
+				<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
+				<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button>
+
 		</>
 	)
 }

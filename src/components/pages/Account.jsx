@@ -94,6 +94,8 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
       }, time)
   }
 
+    const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-black w-[80px] h-[40px] text-black m-2 font-press-start font-light p-2 bg-#c0c0c0 hover:border-dotted my-8"
+    const inputStyle = "border-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px]"
 
   return (
     <>
@@ -102,7 +104,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
         <div className="relative p-4 w-full max-w-md h-full md:h-auto">
 
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button type="button" className="absolute top-3 right-2.5 text-pink-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="closeAccountModel" onClick={() => closeAccountModel()}>
+            <button type="button" className="absolute top-3 right-2.5 text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="closeAccountModel" onClick={() => closeAccountModel()}>
               <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
               <span className="sr-only">Close modal</span>
             </button>
@@ -113,11 +115,11 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
               <form onSubmit={(e) => handleAccountEditSubmit(e, updatedUser)} className="space-y-6" action="#">
 
 
-                <label className='text-pink-500'>Profile Pic</label>
+                <label className='text-black'></label>
                 <div>
                   <label htmlFor='firstName'></label>
                   <input
-                    className="border-2 rounded border-pink-400 text-pink-500 p-2.5 placeholder-pink-400 focus:ring-pink-500 w-[200px]"
+                    className={inputStyle}
                     type='text'
                     id='firstName'
                     name='firstName'
@@ -131,7 +133,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
                 <div>
                   <label htmlFor='lastName'></label>
                   <input
-                    className="border-2 rounded border-pink-400 text-pink-500 p-2.5 placeholder-pink-400 focus:ring-pink-500 w-[200px]"
+                    className={inputStyle}
                     type='text'
                     id='lastName'
                     name='lastName'
@@ -145,7 +147,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
                 <div>
                   <label htmlFor='username'></label>
                   <input
-                    className="border-2 rounded border-pink-400 text-pink-500 p-2.5 placeholder-pink-400 focus:ring-pink-500 w-[200px]"
+                    className={inputStyle}
                     type='text'
                     id='username'
                     name='userName'
@@ -159,7 +161,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
                 <div>
                   <label htmlFor='email'></label>
                   <input
-                    className="border-2 rounded border-pink-400 text-pink-500 p-2.5 placeholder-pink-400 focus:ring-pink-500 w-[200px]"
+                    className={inputStyle}
                     type='text'
                     id='email'
                     name='email'
@@ -169,7 +171,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
                   />
                 </div>
 
-                <button type="submit" className="rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8">Submit</button>
+                <button type="submit" className={buttonStyle}>Submit</button>
               </form>
              
             </div>
