@@ -46,7 +46,8 @@ function App() {
 			setCurrentUser(null)
 		}
 		const getUserClothes = async () => {
-			const userName = currentUser.userName
+			const decoded = jwt_decode(token)
+			const userName = decoded.userName
 			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
 			console.log(response.data)
 			setClothes(response.data.clothes)

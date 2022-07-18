@@ -18,14 +18,13 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [deleteModal, setDeleteModal] = useState(false)
 	const [accountEdit, setAccountEdit] = useState(false)
 	const [passwordModal, setPasswordModal] = useState(false)
-	const [all,setAll] = useState([])
-	const [tops, setTops] = useState([])
-	const [bottoms, setBottoms] = useState([])
-	const [onePieces, setOnePieces] = useState([])
-	const [shoes, setShoes] = useState([])
-	const [access, setAccess] = useState([])
 	const [selectCat, setSelectCat] = useState("all")
 	const [showCat, setShowCat] = useState([])
+	const [tags, setTags] = useState([])
+	const [tagModal, setTagModal] = useState(false)
+	const [tagForm, setTagForm] = useState({
+        tagName: ""
+    })
 	const [clothing, setClothing] = useState({
 		_id: '',
 		clothesName: '',
@@ -48,45 +47,14 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				setClothes(response.data.clothes)
 
 				// all clothes but sorted by priority
-				const sortedClothes = response.data.clothes.sort((a, b) => priority[b.category] > priority[a.category] ? -1 : 1)
-				setAll(sortedClothes)
-				setShowCat(sortedClothes)
 
-				// filter tops out of response
-				const filteredTops = response.data.clothes.filter((clothes) => {
-					return clothes.category.includes("top")
-				})
-				setTops(filteredTops)
-				console.log("filteredTops", tops)
+
 
 				// filter bottoms out of response
-				const filteredBottoms = response.data.clothes.filter((clothes) => {
-					return clothes.category.includes("bottom")
-				})
-				setBottoms(filteredBottoms)
-				console.log("filteredBottoms", bottoms)
+
 
 				// filter one piece out of response
-				const filteredOnePiece = response.data.clothes.filter((clothes) => {
-					return clothes.category.includes("onePiece")
-				})
-				setOnePieces(filteredOnePiece)
-				console.log("filteredOnePiece", onePieces)
 
-
-				// filter shoes out of response
-				const filteredShoes = response.data.clothes.filter((clothes) => {
-					return clothes.category.includes("onePiece")
-				})
-				setShoes(filteredShoes)
-				console.log("filteredShoes", shoes)
-
-				// filter accessories out of response
-				const filteredAccess = response.data.clothes.filter((clothes) => {
-					return clothes.category.includes("accessory")
-				})
-				setAccess(filteredAccess)
-				console.log("filteredAccess", access)
 
 			} catch (error) {
 				console.log(error)
@@ -97,21 +65,37 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 
 	// use state to set the show clothing category based on select Cat value
 	useEffect(() => {
-		if (selectCat == "top"){
-			setShowCat(tops)
-		} else if (selectCat == "bottom"){
-			setShowCat(bottoms)
+		if (selectCat == "top") {
+			const filteredTops = clothes.filter((clothes) => {
+				return clothes.category.includes("top")
+			})
+			setShowCat(filteredTops)
+		} else if (selectCat == "bottom") {
+			const filteredBottoms = clothes.filter((clothes) => {
+				return clothes.category.includes("bottom")
+			})
+			setShowCat(filteredBottoms)
 		} else if (selectCat == "onePiece") {
-			setShowCat(onePieces)
-		}	else if (selectCat == "shoes") {
-			setShowCat(shoes)
-		} 	else if (selectCat == "accessory") {
-			setShowCat(access)
-	}		else if (selectCat == "all") {
-			setShowCat(all)
+			const filteredOnePiece = clothes.filter((clothes) => {
+				return clothes.category.includes("onePiece")
+			})
+			setShowCat(filteredOnePiece)
+		} else if (selectCat == "shoes") {
+			const filteredShoes = clothes.filter((clothes) => {
+				return clothes.category.includes("shoes")
+			})
+			setShowCat(filteredShoes)
+		} else if (selectCat == "accessory") {
+			const filteredAccess = clothes.filter((clothes) => {
+				return clothes.category.includes("accessory")
+			})
+			setShowCat(filteredAccess)
+		} else if (selectCat == "all") {
+			const sortedAllClothes = clothes.sort((a, b) => priority[b.category] > priority[a.category] ? -1 : 1)
+			setShowCat(sortedAllClothes)
 		}
 		console.log(showCat)
-	}, [selectCat])
+	}, [selectCat, clothes])
 
 	// when you click the edit button on a clothing item
 	const handleEditClothesClick = (clothing) => {
@@ -138,6 +122,35 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	// when you click on the edit password button
 	const handlePasswordClick = () => {
 		setPasswordModal(true)
+	}
+	// when you click on the create a tag button 
+	const  handleCreateTagsClick = () => {
+		setTagModal(true)
+	}
+	// when you create a tag
+	const handleTagSubmit = async (e, tagForm) => {
+		e.preventDefault()
+		try {
+			console.log("TAGFORM 🏷",tagForm)
+			console.log("CURRENTUSERID",currentUser.id)
+			const reqBody = {
+				tagName: tagForm.tagName,
+				user: currentUser.id
+			}
+			const tagResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/tags`, reqBody)
+			setTags([...tags, tagResponse.data])
+			setTagForm({
+				tagName: ""
+			})
+			setTagModal(false)
+		} catch (err) {
+			console.warn(err)
+			if (err.response) {
+				if (err.response.status === 400) {
+					setMsg(err.response.data.msg)
+				}
+			}
+		}
 	}
 	// when you add a clothing item
 	const handleNewClothesSubmit = async e => {
@@ -235,7 +248,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 		top: 1
 	}
 	// console.log(clothes)
-	
+
 
 
 	return (
@@ -270,9 +283,10 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					}
 
 
-					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing Item</button>
 					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
 					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" onClick={() => handleAccountClick()}>Edit Account</button>
+					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing Item</button>
+					<button className="border rounded-lg text-gray-500 font-semibold p-2 bg-white hover:bg-gray-200 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button>
 
 
 					<div
@@ -281,32 +295,32 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] mb-8 bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("all")}}
+							onClick={() => { setSelectCat("all") }}
 						>All</div>
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("top")}}
-						>Top</div>
+							onClick={() => { setSelectCat("top") }}
+						>Tops</div>
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("bottom")}}
-						>Bottom</div>
+							onClick={() => { setSelectCat("bottom") }}
+						>Bottoms</div>
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("onePiece")}}
-						>One Piece</div>
+							onClick={() => { setSelectCat("onePiece") }}
+						>One Pieces</div>
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("shoes")}}
+							onClick={() => { setSelectCat("shoes") }}
 						>Shoes</div>
 
 						<div
 							className='border rounded-lg h-[50px] w-[120px] bg-white text-gray-500 font-semibold'
-							onClick={()=>{setSelectCat("accessory")}}
+							onClick={() => { setSelectCat("accessory") }}
 						>Accessories</div>
 					</div>
 
@@ -339,17 +353,27 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						:
 						""
 					}
+					{tagModal ? 
+						<TagsModal 
+						setTagModal={setTagModal}
+						handleSubmit={handleTagSubmit}
+						tagForm={tagForm}
+						setTagForm={setTagForm}
+						/>
+						:
+						""
+					}
 					<div
 						className='flex justify-center'
 					>
 						<div
-							className='grid grid-cols-3 gap-6'
+							className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
 						>
 							{/* {sortedClothes} */}
-							<ShowClothingCards 
-								clothes = {showCat}
-								handleEditClothesClick = {handleEditClothesClick}
-								handleDeleteClothesClick = {handleDeleteClothesClick}
+							<ShowClothingCards
+								clothes={showCat}
+								handleEditClothesClick={handleEditClothesClick}
+								handleDeleteClothesClick={handleDeleteClothesClick}
 							/>
 						</div>
 					</div>

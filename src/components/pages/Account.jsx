@@ -43,20 +43,44 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
     e.preventDefault()
     try {
       // console.log('CURRENT USER',currentUser)
+      const token = localStorage.getItem('jwt')
+      const decode = jwt_decode(token)
+      console.log("decode",decode)
       console.log('UPDATED USER', updatedUser)
-      const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`, updatedUser)
+      const accountReqBody = {
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        userName: updatedUser.userName,
+        email: updatedUser.email,
+        currentUserName: decode.userName,
+        currentEmail: decode.email
+      }
+      const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`, accountReqBody)
+      
+      // console.log(response.data)
+      if (localStorage.getItem('jwt')){
+        localStorage.removeItem('jwt')
+      }
+      const respToken = response.data.token
+      localStorage.setItem('jwt', respToken)
+      
+      const decoded = jwt_decode(respToken)
+      setCurrentUser(decoded)
+      // console.log(response)
 
-      console.log(response)
-      return
       const getResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`)
       
       setAccountEdit(false)
-      setTimedMessage(response.data.msg, 10000)
+      if (response.data.msg) {
+        setTimedMessage(response.data.msg, 10000)
+      }
       // console.log('getresponse data 🧐',getResponse.data)
 
     } catch (error) {
       console.warn(error)
-      setTimedMessage(error.response.data.msg, 10000)
+      if (error.response.data.msg) {
+        setTimedMessage(error.response.data.msg, 10000)
+      }
     }
   }
 

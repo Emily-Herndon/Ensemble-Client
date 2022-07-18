@@ -9,7 +9,7 @@ export default function ShowClothes({ clothing, handleEditClothesClick, handleDe
 			className="border-2 border-gray-300 rounded-xl h-[400px] w-[300px] bg-white"
 		>
 			<div
-				className="h-[70%] flex justify-center"
+				className="h-[65%] flex justify-center"
 			>
 
 			<img
