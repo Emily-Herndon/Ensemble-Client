@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode"
 import { useNavigate, useParams } from 'react-router-dom'
 import Account from './Account'
 import PasswordModal from './PasswordModal'
+import ShowClothingCards from '../ShowClothingCards'
 
 export default function Profile({ clothes, setClothes, clothesForm, setClothesForm, currentUser, setCurrentUser }) {
 	const [msg, setMsg] = useState('')
@@ -15,7 +16,13 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [editOrAdd, setEditOrAdd] = useState('add')
 	const [deleteModal, setDeleteModal] = useState(false)
 	const [accountEdit, setAccountEdit] = useState(false)
-	const [passwordModal, setPasswordModal] = useState(false) 
+	const [passwordModal, setPasswordModal] = useState(false)
+	const [tops, setTops] = useState([]) 
+	const [bottoms, setBottoms] = useState([]) 
+	const [onePiece, setOnePiece] = useState([]) 
+	const [shoes, setShoes] = useState([])
+	const [access, setAccess] = useState([])
+	const [showCat, setShowCat] = useState([])
 	const [clothing, setClothing] = useState({
 		_id: '',
 		clothesName: '',
@@ -36,6 +43,44 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
 				console.log(response.data)
 				setClothes(response.data.clothes)
+
+				// filter tops out of response
+				const filteredTops = response.data.clothes.filter((clothes)=>{
+					return clothes.category.includes("top")
+				})
+				setTops(filteredTops)
+				console.log("filteredTops", filteredTops)
+
+				// filter bottoms out of response
+				const filteredBottoms = response.data.clothes.filter((clothes)=>{
+					return clothes.category.includes("bottom")
+				})
+				setBottoms(filteredBottoms)
+				console.log("filteredBottoms", filteredBottoms)
+
+				// filter one piece out of response
+				const filteredOnePiece = response.data.clothes.filter((clothes)=>{
+					return clothes.category.includes("onePiece")
+				})
+				setOnePiece(filteredOnePiece)
+				console.log("filteredOnePiece", filteredOnePiece)
+				
+
+				// filter shoes out of response
+				const filteredShoes = response.data.clothes.filter((clothes)=>{
+					return clothes.category.includes("onePiece")
+				})
+				setShoes(filteredShoes)
+				console.log("filteredShoes", filteredShoes)
+
+				// filter accessories out of response
+				const filteredAccess = response.data.clothes.filter((clothes)=>{
+					return clothes.category.includes("accessory")
+				})
+				setAccess(filteredAccess)
+				console.log("filteredAccess", filteredAccess)
+
+		
 			} catch (error) {
 				console.log(error)
 			}
@@ -45,7 +90,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 
 	// when you click the edit button on a clothing item
 	const handleEditClothesClick = (clothing) => {
-		console.log("CLOTHINGITEM🧥",clothing)
+		// console.log("CLOTHINGITEM🧥",clothing)
 		setClothesForm(clothing)
 		setEditOrAdd("edit")
 		setEditClothingModal(true)
@@ -135,6 +180,11 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			}
 		}
 	}
+
+	const mapClothingCards = () =>{
+		<ShowClothingCards />
+	}
+
 	// when you delete a clothing item
 	const handleClothingDelete = async(e, clothing) => {
 		e.preventDefault()
@@ -176,8 +226,12 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 
 
 	return (
+		<>
+		{currentUser ? 
+			
 		<div className='content-center'>
-			<div className="text-4xl text-pink-400 font-semibold p-6">Hey there! Welcome to your profile.</div>
+			<div className="text-4xl text-pink-400 font-semibold p-6">Hey there! Welcome to your profile {currentUser.userName}.</div>
+			
 			{clothingModal ?
 				<NewClothes
 					handleSubmit={handleNewClothesSubmit}
@@ -189,6 +243,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				:
 				""
 			}
+
 			{editClothingModal ?
 				<NewClothes
 					handleSubmit={handleEditClothesSubmit}
@@ -204,7 +259,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			<div>
 				<button className="rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8" type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing Item</button>
 			</div>
-				
+			
 
 			<div className=''>
 				<button className="rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8" type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
@@ -213,6 +268,39 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			<div>
 				<button className="rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8" type="button" onClick={() => handleAccountClick()}>Edit Account</button>
 			</div>
+			
+			<div
+				className='flex flex-row justify-center'
+			>
+
+				<div
+					className='border h-[50px] w-[100px]'
+					onClick={()=>{
+						setShowCat(sortedClothes)
+					}}
+				>All</div>
+				
+				<div
+					className='border h-[50px] w-[100px]'
+				>Top</div>
+				
+				<div
+					className='border h-[50px] w-[100px]'
+				>Bottom</div>
+				
+				<div
+					className='border h-[50px] w-[100px]'
+				>One Piece</div>
+				
+				<div
+					className='border h-[50px] w-[100px]'
+				>Shoes</div>
+				
+				<div
+					className='border h-[50px] w-[100px]'
+				>Accessories</div>
+			</div>
+			
 			{deleteModal ?
 				<DeleteClothesModal
 					deleteModal={deleteModal}
@@ -253,6 +341,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			</div>
 
 		</div>
+			: "Loading"}
+		</>
 	)
 }
 

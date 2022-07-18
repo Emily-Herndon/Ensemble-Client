@@ -9,8 +9,13 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-image: linear-gradient(
+    to right,
+    rgb(104, 104, 104),
+    rgb(68, 67, 65)
+  );
+  /* background-image: url("../public/images/Zebra.jpg"); */
 }
-
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
