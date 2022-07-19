@@ -66,8 +66,8 @@ export default function PasswordModal({ setPasswordModal, setCurrentUser, curren
         }, time)
     }
 
-    const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-black w-[80px] h-[40px] text-black m-2 font-press-start font-light p-2 bg-#c0c0c0 hover:border-dotted my-8"
-    const inputStyle = "border-2 border-black text-black font-press-start text-[9px] p-2 placeholder-gray-400 w-[200px]"
+    const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-black w-[80px] h-[40px] text-black m-2 font-press-start font-light p-2 bg-#c0c0c0 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
+    const inputStyle = "border-2 border-black text-black font-press-start text-[9px] p-2 placeholder-gray-400 w-[200px] dark:rounded-lg dark:border-2 dark:border-slate-800 dark:font-sans dark:text-slate-800 dark:text-[15px]"
     return (
         <>
             <div id="authentication-modal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
@@ -79,7 +79,7 @@ export default function PasswordModal({ setPasswordModal, setCurrentUser, curren
                             <span className="sr-only">Close modal</span>
                         </button>
                         <div className="py-6 px-6 lg:px-8">
-                            <h3 className="text-1xl block mb-2 text-black font-press-start pb-4">Change Your Password</h3>
+                            <h3 className="text-1xl block mb-2 text-black font-press-start pb-4 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Change Your Password</h3>
                             {/* form to update password */}
                             <form
                                 onSubmit={(e) => handleChangePasswordSubmit(e)}

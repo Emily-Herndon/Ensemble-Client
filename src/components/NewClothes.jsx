@@ -30,8 +30,8 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 		setClothesForm({ ...clothesForm, category: e.target.value })
 	}
 
-	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-black w-[80px] h-[40px] text-black m-2 font-press-start font-light p-2 bg-#c0c0c0 hover:border-dotted my-8"
-    const inputStyle = "border-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px]"
+	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-black w-[80px] h-[40px] text-black m-2 font-press-start font-light p-2 bg-#c0c0c0 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[35px] dark:font-bold"
+    const inputStyle = "border-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] dark:rounded-lg dark:border-2 dark:border-slate-800 dark:font-sans dark:text-slate-800 dark:text-[15px]"
 
 	return (
 		<>
@@ -50,7 +50,7 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 							</button>
 							{/* form container */}
 							<div className="py-6 px-6 lg:px-8">
-								<h3 className="text-1xl block mb-2 text-black font-press-start pb-4">{editOrAdd === "edit" ? "Edit Clothing Item" : "Add Clothing Item"}</h3>
+								<h3 className="text-1xl block mb-2 text-black font-press-start pb-4 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">{editOrAdd === "edit" ? "Edit Clothing Item" : "Add Clothing Item"}</h3>
 
 								{/* form */}
 								<form
@@ -60,7 +60,7 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 									onSubmit={(e) => handleSubmit(e)}
 								>
 									<div>
-										<label htmlFor="clothesName" className="text-1xl block mb-2 text-black font-press-start pb-4">Name:</label>
+										<label htmlFor="clothesName" className="text-1xl block mb-2 text-black font-press-start pb-4 dark:font-sans dark:text-2xl dark:text-white dark:font-bold"></label>
 										<input type="text"
 											name="clothesName"
 											id="clothesName"
@@ -99,7 +99,7 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 											<option value='Needs-Repair'>Needs Repair</option>
 										</select>
 
-										<div className='flex justify-center border-2 border-black m-4 text-black font-semibold'>
+										<div className='flex justify-center border-2 border-black m-4 text-black font-semibold dark:border-slate-700'>
 											{
 												clothesForm.imageId
 												? 

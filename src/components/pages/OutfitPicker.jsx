@@ -6,7 +6,7 @@ import OutfitCard from '../OutfitCard';
 import OutfitPreview from '../OutfitPreview';
 import axios from 'axios';
 
-export default function OutfitPicker({ clothes }) {
+export default function OutfitPicker({ clothes, currentUser }) {
 	const [tops, setTops] = useState([])
 	const [bottoms, setBottoms] = useState([])
 	const [onePieces, setOnePieces] = useState([])
@@ -14,12 +14,16 @@ export default function OutfitPicker({ clothes }) {
 	const [accessories, setAccessories] = useState([])
 	const [selectedTop, setSelectedTop] = useState({})
 	const [outfit, setOutfit] = useState({
+		outfitName: '',
 		top: null,
 		bottom: null,
 		shoes: null
 	})
 
-	const handleSelectClothing = async (clothing, catVal) => {
+	
+
+	const handleSelectClothing = async (clothing, catVal=null) => {
+		
 		// console.log("clickity clackity do")
 		if (catVal === 'top') {
 			setOutfit({ ...outfit, top: clothing })
@@ -30,18 +34,23 @@ export default function OutfitPicker({ clothes }) {
 			setOutfit({ ...outfit, shoes: clothing })
 		}
 		// console.log(outfit)
-		const OutfitResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
+		// const OutfitResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
 	}
+	// console.log(outfit)
 
-
-	const handleOutfitSubmit = async() =>{
+	const handleOutfitSubmit = async(e) =>{
+		e.preventDefault()
 		try {
-			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfit`, outfit)
-			setOutfit = {
+			console.log('submitted')
+			console.log(outfit)
+			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
+			const userResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/`)
+			setOutfit({
+				outfitName: '', 
 				top: null,
 				bottom: null,
 				shoes: null
-			}
+			})
 			
 		} catch (error) {
 			console.warn(error)
@@ -134,11 +143,12 @@ export default function OutfitPicker({ clothes }) {
 			<div
 				className='flex justify-center'
 			>
-			<div>
+			<div className='bg-white'>
 				<OutfitPreview
 					outfit={outfit}
 					setOutfit = {setOutfit}
-					handleClick={handleOutfitSubmit}
+					handleSubmit={handleOutfitSubmit}
+					// handleSubmit={handleSelectClothing}
 				/>
 				
 			</div>

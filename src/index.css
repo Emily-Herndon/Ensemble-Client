@@ -9,25 +9,18 @@ body {
 		sans-serif, 'Press Start 2P';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #c0c0c0;
+	
+	
+	--background-color: #c0c0c0;
+	background-color: var(--background-color);
   --border-width: 1px;
-  --border-raised-outer: inset -1px -1px var(--window-frame),
-    inset 1px 1px var(--button-highlight);
-  --border-raised-inner: inset -2px -2px var(--button-shadow),
-    inset 2px 2px var(--button-face);
-  --border-sunken-outer: inset -1px -1px var(--button-highlight),
-    inset 1px 1px var(--window-frame);
-  --border-sunken-inner: inset -2px -2px var(--button-face),
-    inset 2px 2px var(--button-shadow);
-  --border-window-outer: inset -1px -1px var(--window-frame),
-    inset 1px 1px var(--button-face);
-  --border-window-inner: inset -2px -2px var(--button-shadow),
-    inset 2px 2px var(--button-highlight);
 }
+/* body.dark{
+	--background-color: ;
+} */
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
-
 
 

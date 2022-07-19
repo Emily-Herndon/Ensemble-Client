@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function OutfitPreview({outfit, setOutfit, handleClick}) {
-    
+export default function OutfitPreview({ outfit, setOutfit, handleSubmit }) {
+
     let topPreview = ""
     if (outfit.top !== null) {
         topPreview = outfit.top.imageId.imgUrl
@@ -22,13 +22,31 @@ export default function OutfitPreview({outfit, setOutfit, handleClick}) {
     } else {
         shoesPreview = ""
     }
-  
+
     return (
-    <div>
-        <img src={topPreview}/>
-        <img src={bottomPreview}/>
-        <img src={shoesPreview}/>
-        <button type='submit' onClick={() => handleClick()}>Submit</button>
-    </div>
-  )
+        <div>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <label>Outfit Name</label>
+                <input
+                    type='text'
+                    placeholder='outfit Name'
+                    value={outfit.outfitName}
+                    onChange={(e) => setOutfit({ ...outfit, outfitName: e.target.value })}
+                />
+                <div className='bg-black'>
+                    <img src={topPreview} />
+                </div>
+
+                <div>
+                    <img src={bottomPreview} />
+                </div>
+
+                <div>
+                    <img src={shoesPreview} />
+                </div>
+
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+    )
 }

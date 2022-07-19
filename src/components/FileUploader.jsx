@@ -33,13 +33,13 @@ export default function FileUploader({imgFile, setImgFile}) {
 			const fd = new FormData()
 			fd.append("image", e.target.files[0])
 			setImgFile(fd)
-			console.log("input completed?")
+			// console.log("input completed?")
 		}
 
 	// handles sending image file to the server
 	const handleImageSubmit = async e => {
 		e.preventDefault()
-		console.log("submit image")
+		("submit image")
 		// creates new empty formData Object
 		const fd = new FormData()
 		fd.append("image", imgFile)
@@ -50,7 +50,7 @@ export default function FileUploader({imgFile, setImgFile}) {
 	
 	return (
 		<div
-		className="max-h-[200px] font-press-start text-[8px] text-black"
+		className="max-h-[200px] font-press-start text-[8px] text-black dark:font-sans dark:text-[14px] dark:text-white dark:font-bold"
 		>
 			FileUploader
 			{/* image preview */}

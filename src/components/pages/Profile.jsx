@@ -17,6 +17,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [editOrAdd, setEditOrAdd] = useState('add')
 	const [deleteModal, setDeleteModal] = useState(false)
 	const [accountEdit, setAccountEdit] = useState(false)
+	const [profileImage, setProfileImage] = useState("https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg")
 	const [passwordModal, setPasswordModal] = useState(false)
 	const [selectCat, setSelectCat] = useState("all")
 	const [showCat, setShowCat] = useState([])
@@ -25,8 +26,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [tagModalType, setTagModalType] = useState("")
 	const [selectedTags, setSelectedTags] = useState([])
 	const [tagForm, setTagForm] = useState({
-        tagName: ""
-    })
+		tagName: ""
+	})
 	const [clothing, setClothing] = useState({
 		_id: '',
 		clothesName: '',
@@ -45,7 +46,6 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				setCurrentUser(decoded)
 				const userName = decoded.userName
 				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
-				console.log("RESPONSE DATA FOR USER PROFILE GET",response.data)
 				setClothes(response.data.clothes)
 				setTags(response.data.tags)
 			} catch (error) {
@@ -116,12 +116,12 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 		setPasswordModal(true)
 	}
 	// when you click on the create a tag button 
-	const  handleCreateTagsClick = () => {
+	const handleCreateTagsClick = () => {
 		setTagModal(true)
 		setTagModalType("create")
 	}
 	// when you click on the add tags button
-	const handleAddTagsClick= (clothing) =>  {
+	const handleAddTagsClick = (clothing) => {
 		setTagModal(true)
 		setTagModalType("add")
 		setSelectedTags(clothing.tags)
@@ -130,8 +130,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const handleTagSubmit = async (e, tagForm) => {
 		e.preventDefault()
 		try {
-			console.log("TAGFORM 🏷",tagForm)
-			console.log("CURRENTUSERID",currentUser.id)
+			console.log("TAGFORM 🏷", tagForm)
+			console.log("CURRENTUSERID", currentUser.id)
 			const reqBody = {
 				tagName: tagForm.tagName,
 				user: currentUser.id
@@ -141,7 +141,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			setTagForm({
 				tagName: ""
 			})
-			
+
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -152,10 +152,30 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 		}
 	}
 	// when you add tags to a clothing item
-	const handleAddTagsSubmit = async e => {
+	const handleEditTagsSubmit = async e => {
 		e.preventDefault()
 		try {
 			console.log(selectedTags)
+		} catch (err) {
+			console.warn(err)
+			if (err.response) {
+				if (err.response.status === 400) {
+					setMsg(err.response.data.msg)
+				}
+			}
+		}
+	}
+	// when you delete a tag
+	const handleDeleteTag = async (e, tag) => {
+		e.preventDefault()
+		try {
+			// console.log(tag)
+			// console.log(currentUser)
+			const userName = currentUser.userName
+			const tagId = tag._id
+			await axios.delete(`${process.env.REACT_APP_SERVER_URL}/tags/${tagId}`)
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
+			setTags(response.data.tags)
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -251,7 +271,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
 			setClothes(response.data.clothes)
 			setDeleteModal(false)
-			
+
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -269,14 +289,33 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	}
 	// console.log(clothes)
 
-	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-blue-500 dark:border-solid dark:border-blue-500 dark:hover:bg-blue-600 dark:rounded-lg dark:text-[14px] dark:h-[45px] w-[140px]"
+	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
+
+	const handleImageUploadSubmit = () =>{
+
+	}
+
+
+
 
 	return (
 		<>
 			{currentUser ?
 
 				<div className='content-center'>
-					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white">Hey there! Welcome to your profile, {currentUser.userName}.</div>
+					
+					{/* profile image container */}
+					<div
+						className='flex justify-center'
+					>
+						{/* profile image */}
+					<img 
+						src={profileImage}
+						className='h-[200px] w-[200px] border-2 border-l-black border-b-black mt-8 dark:rounded-full'
+						
+					/>
+					</div>
+					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold">Welcome to your profile, {currentUser.userName}.</div>
 
 					{clothingModal ?
 						<NewClothes
@@ -302,15 +341,18 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						""
 					}
 
-
+					<button className={buttonStyle} type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
+					<button className={buttonStyle} type="button" onClick={() => handleAccountClick()}>Edit Account</button>
+					<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
+					{/* <button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button> */}
 					<div
 						className='flex flex-row justify-center'
 					>
 
-						<div
+						<button
 							className={buttonStyle}
 							onClick={() => { setSelectCat("all") }}
-						>All</div>
+						>All</button>
 
 						<div
 							className={buttonStyle}
@@ -332,10 +374,10 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 							onClick={() => { setSelectCat("shoes") }}
 						>Shoes</div>
 
-						<div
+						{/* <div
 							className={buttonStyle}
 							onClick={() => { setSelectCat("accessory") }}
-						>Accessories</div>
+						>Accessories</div> */}
 					</div>
 
 					{deleteModal ?
@@ -353,6 +395,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 							currentUser={currentUser}
 							setCurrentUser={setCurrentUser}
 							setAccountEdit={setAccountEdit}
+							profileImage={profileImage}
+							setProfileImage={setProfileImage}
 						/>
 						:
 						""
@@ -367,17 +411,18 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						:
 						""
 					}
-					{tagModal ? 
-						<TagsModal 
-						setTagModal={setTagModal}
-						handleSubmit={handleTagSubmit}
-						tagForm={tagForm}
-						setTagForm={setTagForm}
-						tagModalType={tagModalType}
-						selectedTags={selectedTags}
-						setSelectedTags={setSelectedTags}
-						tags={tags}
-						handleAddTagsSubmit={handleAddTagsSubmit}
+					{tagModal ?
+						<TagsModal
+							setTagModal={setTagModal}
+							handleSubmit={handleTagSubmit}
+							tagForm={tagForm}
+							setTagForm={setTagForm}
+							tagModalType={tagModalType}
+							selectedTags={selectedTags}
+							setSelectedTags={setSelectedTags}
+							tags={tags}
+							handleEditTagsSubmit={handleEditTagsSubmit}
+							handleDeleteTag={handleDeleteTag}
 						/>
 						:
 						""
@@ -403,10 +448,31 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				</div>
 				: "Loading"}
 
-				<button className={buttonStyle} type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
-				<button className={buttonStyle} type="button" onClick={() => handleAccountClick()}>Edit Account</button>
-				<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
-				<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button>
+			{/* THIS IS PROFILE IMAGE UPLOADER MODAL */}
+			{/* <div id="imageUpload-modal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+				<div className="relative p-4 w-full max-w-md h-full md:h-auto">
+
+					<div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+						<button type="button" className="absolute top-3 right-2.5 text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="closeUploadModal" onClick={() => closeUploadModal()}>
+							<svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+							<span className="sr-only">Close modal</span>
+						</button>
+
+						<div className="py-6 px-6 lg:px-8">
+							<h3 className="text-1xl text-black font-press-start p-6">Upload an image for your profile!</h3>
+
+							<form onSubmit={() => handleImageUploadSubmit()} className="space-y-6" action="#">
+
+
+								
+
+								<button type="submit" className={buttonStyle}>Submit</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div> */}
 
 		</>
 	)
