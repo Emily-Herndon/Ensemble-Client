@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import FileUploader from '../FileUploader'
 
-export default function Account({ setAccountEdit, setCurrentUser, currentUser, profileImage, setProfileImage}) {
+export default function Account({ setAccountEdit, setCurrentUser, currentUser, profileImage, setProfileImage, defaultProfileImg}) {
   const navigate = useNavigate()
   const [updatedUser, setUpdatedUser] = useState({
     firstName: "",

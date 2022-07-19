@@ -4,9 +4,6 @@ import axios from "axios"
 
 export default function TagsModal({ setTagModal, handleSubmit, handleEditTagsSubmit, tagForm, setTagForm, tags, selectedTags, setSelectedTags, handleDeleteTag }) {
     
-    const [tagsOnClothing, setTagsOnClothing] = useState([])
-    const [userTags, setUserTags] = useState([])
-    
     useEffect(()=>{
         const getUser = async () =>{
             const token = localStorage.getItem('jwt')
@@ -30,7 +27,7 @@ export default function TagsModal({ setTagModal, handleSubmit, handleEditTagsSub
         // console.log(mappedTag)
         return(
             <div key={mappedTag._id}>
-                <input type="checkbox" name="tagName" id="tagName" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" /*checked={selectedTags.some((tag) => tag._id === mappedTag._id)}*/ value={mappedTag._id} onChange={e => handleCheckbox(e, mappedTag) } />
+                <input type="checkbox" name="tagName" id="tagName" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" checked={selectedTags.some((tag) => tag._id === mappedTag._id)} value={mappedTag._id} onChange={e => handleCheckbox(e, mappedTag) } />
                 <label htmlFor="tagName" className="border-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] dark:font-sans dark:text-[16px] dark:text-white dark:font-bold dark:border-slate-700 dark:m-2">{mappedTag.tagName}</label> 
                 <button
 				className="dark:bg-slate-800 dark:border-2 dark:border-slate-800 dark:p-1 dark:rounded-lg dark:hover:bg-slate-600 dark:h-[34px] dark:m-1"
@@ -43,35 +40,26 @@ export default function TagsModal({ setTagModal, handleSubmit, handleEditTagsSub
         )
     })
 
-    const handleCheckbox = (e, mappedTag) =>{
-        console.log("mappedTag", mappedTag)
-        // setSelectedTags([...selectedTags, tag])
-        let currentlySelectedTags = []
-        // currentlySelectedTags.push(tag)
+    const handleCheckbox = (e, tag) =>{
         // map through checked tags and return their ids
-        console.log("selectedTags",selectedTags)
-        console.log("currently selected tags", currentlySelectedTags)
-        const selectedTagsIds = currentlySelectedTags.map(tag => {
+        const selectedTagsIds = selectedTags.map(tag => {
             return tag._id  
         })
-        console.log("SELECTED TAG IDS",selectedTagsIds)
-        console.log("allTags",allTags)
-
         // if you check a tag & it isn't already in selectedTags, add it
         if(e.target.checked && !selectedTags.some((tag) => tag._id === e.target.value)){
             // add a tag that has an id that matches the value of the checkbox to selectedTags
-            setSelectedTags([...selectedTags, allTags.find(tag => tag._id === e.target.value)]) }
-        // // if you uncheck a tag & it is in selectedTags remove it
-        // }else if(!e.target.checked && selectedTags.some((tag) => tag === e.target.value)) {
-        //     // find the index of specific tag
-        //     const idx = selectedTagsIds.indexOf(e.target.value)
-        //     // make a copy of selectedTags
-        //     const selectedTagsCopy = [...selectedTags]
-        //     // remove the tag at found index
-        //     selectedTagsCopy.splice(idx, 1)
-        //     // set selectedTags to the updated selectedTagsCopy
-        //     setSelectedTags(selectedTagsCopy)
-        // }
+            setSelectedTags([...selectedTags, tags.find(tag => tag._id === e.target.value)]) 
+        // if you uncheck a tag & it is in selectedTags remove it
+        }else if(!e.target.checked && selectedTags.some((tag) => tag._id === e.target.value)) {
+            // find the index of specific tag
+            const idx = selectedTagsIds.indexOf(e.target.value)
+            // make a copy of selectedTags
+            const selectedTagsCopy = [...selectedTags]
+            // remove the tag at found index
+            selectedTagsCopy.splice(idx, 1)
+            // set selectedTags to the updated selectedTagsCopy
+            setSelectedTags(selectedTagsCopy)
+        }
 
     }
 

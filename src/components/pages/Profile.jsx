@@ -10,14 +10,14 @@ import PasswordModal from './PasswordModal'
 import ShowClothingCards from '../ShowClothingCards'
 import TagsModal from '../TagsModal'
 
-export default function Profile({ clothes, setClothes, clothesForm, setClothesForm, currentUser, setCurrentUser }) {
+export default function Profile({ clothes, setClothes, clothesForm, setClothesForm, currentUser, setCurrentUser, defaultProfileImg }) {
 	const [msg, setMsg] = useState('')
 	const [clothingModal, setClothingModal] = useState(false)
 	const [editClothingModal, setEditClothingModal] = useState(false)
 	const [editOrAdd, setEditOrAdd] = useState('add')
 	const [deleteModal, setDeleteModal] = useState(false)
 	const [accountEdit, setAccountEdit] = useState(false)
-	const [profileImage, setProfileImage] = useState("https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg")
+	const [profileImage, setProfileImage] = useState("")
 	const [passwordModal, setPasswordModal] = useState(false)
 	const [selectCat, setSelectCat] = useState("all")
 	const [showCat, setShowCat] = useState([])
@@ -25,6 +25,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const [tagModal, setTagModal] = useState(false)
 	const [tagModalType, setTagModalType] = useState("")
 	const [selectedTags, setSelectedTags] = useState([])
+	const [pageLoaded, setPageLoaded] = useState(false)
 	const [tagForm, setTagForm] = useState({
 		tagName: ""
 	})
@@ -46,8 +47,15 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 				setCurrentUser(decoded)
 				const userName = decoded.userName
 				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
+				// console.log("responseData", response.data)
 				setClothes(response.data.clothes)
 				setTags(response.data.tags)
+				if (response.data.profileImg){
+					setProfileImage(response.data.profileImg.imgUrl)
+				} else {
+					setProfileImage(defaultProfileImg)
+				}
+				setPageLoaded(true)
 			} catch (error) {
 				console.log(error)
 			}
@@ -152,9 +160,10 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 		}
 	}
 	// when you add tags to a clothing item
-	const handleEditTagsSubmit = async e => {
+	const handleEditTagsSubmit = async (e, selectedTags) => {
 		e.preventDefault()
 		try {
+			
 			console.log(selectedTags)
 		} catch (err) {
 			console.warn(err)
@@ -290,17 +299,11 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	// console.log(clothes)
 
 	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
-
-	const handleImageUploadSubmit = () =>{
-
-	}
-
-
-
+	const tabStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
 
 	return (
 		<>
-			{currentUser ?
+			{currentUser && pageLoaded ?
 
 				<div className='content-center'>
 					
@@ -311,7 +314,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						{/* profile image */}
 					<img 
 						src={profileImage}
-						className='h-[200px] w-[200px] border-2 border-l-black border-b-black mt-8 dark:rounded-full'
+						className='h-[200px] w-[200px] border-4 border-l-black border-b-black mt-8 dark:rounded-full dark:border-t-black dark:border-r-black object-cover'
 						
 					/>
 					</div>
@@ -346,7 +349,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
 					{/* <button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button> */}
 					<div
-						className='flex flex-row justify-center'
+						className='flex flex-row justify-center border-b-2'
 					>
 
 						<button
@@ -397,6 +400,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 							setAccountEdit={setAccountEdit}
 							profileImage={profileImage}
 							setProfileImage={setProfileImage}
+							defaultProfileImg = {defaultProfileImg}
 						/>
 						:
 						""
@@ -447,32 +451,6 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 
 				</div>
 				: "Loading"}
-
-			{/* THIS IS PROFILE IMAGE UPLOADER MODAL */}
-			{/* <div id="imageUpload-modal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
-				<div className="relative p-4 w-full max-w-md h-full md:h-auto">
-
-					<div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-						<button type="button" className="absolute top-3 right-2.5 text-black bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="closeUploadModal" onClick={() => closeUploadModal()}>
-							<svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-							<span className="sr-only">Close modal</span>
-						</button>
-
-						<div className="py-6 px-6 lg:px-8">
-							<h3 className="text-1xl text-black font-press-start p-6">Upload an image for your profile!</h3>
-
-							<form onSubmit={() => handleImageUploadSubmit()} className="space-y-6" action="#">
-
-
-								
-
-								<button type="submit" className={buttonStyle}>Submit</button>
-							</form>
-
-						</div>
-					</div>
-				</div>
-			</div> */}
 
 		</>
 	)

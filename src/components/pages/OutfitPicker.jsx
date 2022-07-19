@@ -40,11 +40,20 @@ export default function OutfitPicker({ clothes, currentUser }) {
 
 	const handleOutfitSubmit = async(e) =>{
 		e.preventDefault()
+		
 		try {
 			console.log('submitted')
 			console.log(outfit)
+			const reqBody = {
+				outfitName: outfit.name,
+				top: outfit.top,
+				bottom: outfit.bottom,
+				shoes: outfit.shoes,
+				user: currentUser.id, 
+			}
+			
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
-			const userResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/`)
+
 			setOutfit({
 				outfitName: '', 
 				top: null,
@@ -138,12 +147,12 @@ export default function OutfitPicker({ clothes, currentUser }) {
 
 
 	return (
-		<div>
-			OutfitPicker
+		<div className='m-6 text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold'>
+			What are you going to wear today?
 			<div
-				className='flex justify-center'
+				className='justify-center'
 			>
-			<div className='bg-white'>
+			<div className=''>
 				<OutfitPreview
 					outfit={outfit}
 					setOutfit = {setOutfit}
@@ -156,7 +165,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				className="flex flex-col items-center"
 			>
 				<div
-					className="w-[20vw] h[20vh] "
+					className="w-[20vw] h[20vh] m-8"
 				>
 					<Carousel
 						showThumbs={false}

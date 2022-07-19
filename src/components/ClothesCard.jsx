@@ -6,7 +6,7 @@ export default function ShowClothes({ clothing, handleEditClothesClick, handleDe
 
 	return (
 		<div
-			className="border-2 border-b-black border-l-black h-[400px] w-[300px] bg-white dark:rounded-lg dark:border-slate-800 dark:border-4 dark:bg-slate-300"
+			className="border-4 border-b-black border-l-black h-[400px] w-[300px] bg-white dark:rounded-lg dark:border-slate-800 dark:border-4 dark:bg-slate-300"
 		>
 			<div
 				className="h-[65%] flex justify-center"

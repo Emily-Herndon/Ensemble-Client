@@ -6,7 +6,7 @@ export default function OutfitCard({clothing}) {
         <img 
             src={clothing.imageId.imgUrl}
         />
-        <p> {clothing.clothesName} </p>
+        {/* <p> {clothing.clothesName} </p> */}
     </>
   )
 }

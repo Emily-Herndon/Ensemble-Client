@@ -29,6 +29,7 @@ function App() {
 		user:''
 	})
 	const [clothes, setClothes] = useState([])
+	const defaultProfileImg = "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
 	//useEffect -- if the user navigates away from the page, we will og them back in 
 	useEffect(() => {
 		//check to see if token is in local storage in the
@@ -103,6 +104,7 @@ function App() {
 								setClothes={setClothes}
 								currentUser={currentUser}
 								setCurrentUser={setCurrentUser}
+								defaultProfileImg = {defaultProfileImg}
 							/>}
 						/>
 						<Route
