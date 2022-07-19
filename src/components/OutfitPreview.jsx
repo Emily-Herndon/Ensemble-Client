@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function OutfitPreview({outfit, setOutfit}) {
+export default function OutfitPreview({outfit, setOutfit, handleClick}) {
     
     let topPreview = ""
     if (outfit.top !== null) {
@@ -28,6 +28,7 @@ export default function OutfitPreview({outfit, setOutfit}) {
         <img src={topPreview}/>
         <img src={bottomPreview}/>
         <img src={shoesPreview}/>
+        <button type='submit' onClick={() => handleClick()}>Submit</button>
     </div>
   )
 }

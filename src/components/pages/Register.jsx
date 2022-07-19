@@ -6,8 +6,8 @@ import axios from "axios"
 
 export default function Register({ currentUser, setCurrentUser }) {
 	const divStyles = "py-3"
-	const buttonStyles = "rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8"
-	const inputStyles = "border-2 border-pink-500 p-2 rounded-lg text-pink-500 font-semibold placeholder-pink-400"
+	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[100px] h-[30px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8"
+    const inputStyle = "border-b-2 border-l-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] h-[30px]"
 
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
@@ -62,8 +62,9 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 	return (
 		<div className="">
+			<h1 className="text-1xl text-black font-press-start p-6">When your closet is virtual, </h1>
 			<form
-				className="mt-12"
+				className="mt-8"
 				onSubmit={handleRegisterSubmit}
 			>
 				<div
@@ -72,7 +73,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label htmlFor="firstName" hidden>Enter First Name</label>
 					<input
 						id='firstName'
-						className={inputStyles}
+						className={inputStyle}
 						placeholder="First Name"
 						value={firstName}
 						onChange={e => setFirstName(e.target.value)}
@@ -85,7 +86,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label htmlFor="lastName" hidden>Enter Last Name</label>
 					<input
 						id='lastName'
-						className={inputStyles}
+						className={inputStyle}
 						placeholder="Last Name"
 						value={lastName}
 						onChange={e => setLastName(e.target.value)}
@@ -98,7 +99,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label htmlFor="userName" hidden>Enter Username</label>
 					<input
 						id="userName"
-						className={inputStyles}
+						className={inputStyle}
 						placeholder="Username"
 						value={userName}
 						onChange={e => setUserName(e.target.value)}
@@ -110,7 +111,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label htmlFor="email" hidden>Enter Email</label>
 					<input
 						id='email'
-						className={inputStyles}
+						className={inputStyle}
 						placeholder="Email"
 						type="email"
 						value={email}
@@ -123,7 +124,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label htmlFor="password" hidden>Enter Password</label>
 					<input
 						id='password'
-						className={inputStyles}
+						className={inputStyle}
 						placeholder="Password"
 						type="password"
 						value={password}
@@ -134,9 +135,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 				{msg}
 				</div>
 				<button
-					className={buttonStyles}
+					className={buttonStyle}
 					type="submit"
-				>Create Account!</button>
+				>Register</button>
+				<h1 className="text-1xl text-black font-press-start p-6">you don't have to worry about folding clothes.</h1>
 			</form>
 		</div>
 	)

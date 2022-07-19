@@ -11,7 +11,7 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 		setClothesForm({
 			clothesName: '',
 			category: 'default',
-			status: 'default',
+			status: 'Clean',
 			imageFile: '',
 			user: ''
 		})

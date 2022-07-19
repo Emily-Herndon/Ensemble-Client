@@ -141,7 +141,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			setTagForm({
 				tagName: ""
 			})
-			setTagModal(false)
+			
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -191,7 +191,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			setClothesForm({
 				clothesName: '',
 				category: 'default',
-				status: 'default',
+				status: 'Clean',
 				imageFile: null,
 			})
 		} catch (err) {
@@ -222,6 +222,12 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			setEditOrAdd("add")
 			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
 			setClothes(response.data.clothes)
+			setClothesForm({
+				clothesName: '',
+				category: 'default',
+				status: 'Clean',
+				imageFile: null,
+			})
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -245,6 +251,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
 			setClothes(response.data.clothes)
 			setDeleteModal(false)
+			
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -262,14 +269,14 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	}
 	// console.log(clothes)
 
-	const buttonStyle = "text-[8px] border-2 border-black w-[105px] h-[43px] text-black m-2 font-press-start font-light p-2 bg-white hover:border-dotted my-8"
+	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-blue-500 dark:border-solid dark:border-blue-500 dark:hover:bg-blue-600 dark:rounded-lg dark:text-[14px] dark:h-[45px] w-[120px]"
 
 	return (
 		<>
 			{currentUser ?
 
 				<div className='content-center'>
-					<div className="text-1xl text-black font-press-start p-6">Hey there! Welcome to your profile, {currentUser.userName}.</div>
+					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white">Hey there! Welcome to your profile, {currentUser.userName}.</div>
 
 					{clothingModal ?
 						<NewClothes

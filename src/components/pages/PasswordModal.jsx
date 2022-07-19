@@ -12,7 +12,6 @@ export default function PasswordModal({ setPasswordModal, setCurrentUser, curren
     const [msg, setMsg] = useState("")
     const [submitted, setSubmitted] = useState(false)
     
-
     const closePasswordModal = () => {
         setPasswordModal(false)
     }

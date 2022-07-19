@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import OutfitCard from '../OutfitCard';
 import OutfitPreview from '../OutfitPreview';
+import axios from 'axios';
 
 export default function OutfitPicker({ clothes }) {
 	const [tops, setTops] = useState([])
@@ -18,8 +19,8 @@ export default function OutfitPicker({ clothes }) {
 		shoes: null
 	})
 
-	const handleSelectClothing = (clothing, catVal) => {
-		console.log("clickity clackity do")
+	const handleSelectClothing = async (clothing, catVal) => {
+		// console.log("clickity clackity do")
 		if (catVal === 'top') {
 			setOutfit({ ...outfit, top: clothing })
 			// setTops(clothing)
@@ -28,8 +29,28 @@ export default function OutfitPicker({ clothes }) {
 		} else if (catVal === 'shoes') {
 			setOutfit({ ...outfit, shoes: clothing })
 		}
-		console.log(outfit)
+		// console.log(outfit)
+		const OutfitResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
 	}
+
+
+	const handleOutfitSubmit = async() =>{
+		try {
+			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfit`, outfit)
+			setOutfit = {
+				top: null,
+				bottom: null,
+				shoes: null
+			}
+			
+		} catch (error) {
+			console.warn(error)
+		}
+
+	}
+
+
+
 	// const filteredTops = clothesFilterFunction(clothes,"top")
 	// console.log("filteredTops",filteredTops)
 	const filteredTops = clothes.filter((clothing) => {
@@ -117,8 +138,9 @@ export default function OutfitPicker({ clothes }) {
 				<OutfitPreview
 					outfit={outfit}
 					setOutfit = {setOutfit}
+					handleClick={handleOutfitSubmit}
 				/>
-				<p>fuck this shittttt</p>
+				
 			</div>
 			<div
 				className="flex flex-col items-center"

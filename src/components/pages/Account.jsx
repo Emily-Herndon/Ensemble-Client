@@ -16,8 +16,6 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
   const [msg, setMsg] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
-
-
   const closeAccountModel = () => {
     setAccountEdit(false)
   }
@@ -45,8 +43,8 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
       // console.log('CURRENT USER',currentUser)
       const token = localStorage.getItem('jwt')
       const decode = jwt_decode(token)
-      console.log("decode",decode)
-      console.log('UPDATED USER', updatedUser)
+      // console.log("decode",decode)
+      // console.log('UPDATED USER', updatedUser)
       const accountReqBody = {
         firstName: updatedUser.firstName,
         lastName: updatedUser.lastName,
@@ -55,6 +53,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser })
         currentUserName: decode.userName,
         currentEmail: decode.email
       }
+
       const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/profile/${currentUser.userName}`, accountReqBody)
       
       // console.log(response.data)

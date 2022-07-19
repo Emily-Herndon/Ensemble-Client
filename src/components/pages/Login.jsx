@@ -5,8 +5,6 @@ import { Navigate } from "react-router-dom"
 
 
 export default function Login({setCurrentUser, currentUser}) {
-	const buttonStyles = "rounded-lg text-pink-500 font-semibold p-2 bg-pink-200 hover:bg-pink-300 my-8"
-	const inputStyles = "border-2 border-pink-500 p-2 rounded-lg text-pink-500 font-semibold placeholder-pink-400"
 	const divStyles = "py-3"
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -51,17 +49,19 @@ export default function Login({setCurrentUser, currentUser}) {
 		 <Navigate to='/profile' />
 	  }
 
+	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[100px] h-[30px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8"
+    const inputStyle = "border-b-2 border-l-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] h-[30px]"
 
 	return (
 		<div>
 			{/* {currentUser != null && (<Navigate to='/profile' />)} */}
-			<h1 className="text-4xl text-pink-400 font-semibold p-6">Welcome Back!</h1>
+			<h1 className="text-1xl text-black font-press-start p-6">And the best dressed award goes to:</h1>
 			<form onSubmit={handleSubmit}>
 				<div className={divStyles}>
 				<label htmlFor="email" hidden>Enter Email</label>
 				<input
 					id='email'
-					className={inputStyles}
+					className={inputStyle}
 					type="email"
 					placeholder="email"
 					value={email}
@@ -72,14 +72,14 @@ export default function Login({setCurrentUser, currentUser}) {
 				<label htmlFor="password" hidden>Enter Password</label>
 				<input
 					id='password'
-					className={inputStyles}
+					className={inputStyle}
 					type="password"
 					placeholder="password"
 					value={password}
 					onChange={e=>setPassword(e.target.value)}
 				/>
 				</div>
-				<button className={buttonStyles}>Login!</button>
+				<button className={buttonStyle}>Login</button>
 			</form>
 		</div>
 	)
