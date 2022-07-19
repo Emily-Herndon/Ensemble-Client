@@ -51,8 +51,8 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				shoes: outfit.shoes,
 				user: currentUser.id, 
 			}
-			
-			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, outfit)
+
+			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, reqBody)
 
 			setOutfit({
 				outfitName: '', 
