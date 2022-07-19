@@ -269,7 +269,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	}
 	// console.log(clothes)
 
-	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-blue-500 dark:border-solid dark:border-blue-500 dark:hover:bg-blue-600 dark:rounded-lg dark:text-[14px] dark:h-[45px] w-[120px]"
+	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-blue-500 dark:border-solid dark:border-blue-500 dark:hover:bg-blue-600 dark:rounded-lg dark:text-[14px] dark:h-[45px] w-[140px]"
 
 	return (
 		<>
