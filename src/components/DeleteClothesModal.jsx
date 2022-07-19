@@ -4,7 +4,7 @@ export default function DeleteClothesModal({  setDeleteModal, handleClothingDele
     const closeDeleteModal = () => {
         setDeleteModal(false)
     }
-    const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 bg-gray-200 hover:border-dotted my-8"
+    const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 bg-gray-200 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
     return (
         <>
             <div id="deleteClothingModal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
@@ -16,7 +16,7 @@ export default function DeleteClothesModal({  setDeleteModal, handleClothingDele
                         </button>
                         <div className="p-6 text-center">
                             <svg aria-hidden="true" className="mx-auto mb-4 w-14 h-14 text-black dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 className="text-[15px] text-black font-press-start p-6">Are you sure you want to delete this clothing item?</h3>
+                            <h3 className="text-[15px] text-black font-press-start p-6 dark:font-sans dark:text-xl dark:text-white dark:font-bold">Are you sure you want to delete this clothing item?</h3>
                             <button data-modal-toggle="deleteClothingModal" type="button" className={buttonStyle} onClick={e => handleClothingDelete(e, clothing)}>
                                 Yes!
                             </button>

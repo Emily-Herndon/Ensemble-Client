@@ -28,9 +28,9 @@ export default function TagsModal({ setTagModal, handleSubmit, handleEditTagsSub
         return(
             <div key={mappedTag._id}>
                 <input type="checkbox" name="tagName" id="tagName" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" checked={selectedTags.some((tag) => tag._id === mappedTag._id)} value={mappedTag._id} onChange={e => handleCheckbox(e, mappedTag) } />
-                <label htmlFor="tagName" className="border-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] dark:font-sans dark:text-[16px] dark:text-white dark:font-bold dark:border-slate-700 dark:m-2">{mappedTag.tagName}</label> 
+                <label htmlFor="tagName" className="text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] dark:font-sans dark:text-[16px] dark:text-white dark:font-bold dark:border-slate-700 dark:m-2">{mappedTag.tagName}</label> 
                 <button
-				className="dark:bg-slate-800 dark:border-2 dark:border-slate-800 dark:p-1 dark:rounded-lg dark:hover:bg-slate-600 dark:h-[34px] dark:m-1"
+				className="dark:bg-slate-800 dark:border-2 dark:border-slate-800 dark:p-1 dark:rounded-lg dark:hover:bg-slate-600 dark:h-[34px] dark:m-1 m-2 border-2 p-2 text-[8px] bg-gray-200 border-l-black  border-b-black"
 				type="button"
 				onClick={(e) => handleDeleteTag(e, mappedTag)}
 			>
@@ -79,13 +79,13 @@ export default function TagsModal({ setTagModal, handleSubmit, handleEditTagsSub
                             <h3 className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Tags:</h3>
                             <form className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-[16px] dark:text-white dark:font-bold" action="#" onSubmit={(e) => handleEditTagsSubmit(e, selectedTags)}>
                                 {allTags}
-                                <button type="submit" className={buttonStyle}>Add Tags</button>
+                                <button type="submit" className={buttonStyle}>Add Tag</button>
                             </form>
                         </div>
-                            <h3 className="text-1xl text-black font-press-start p-4 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Create a New Tag</h3>
+                            <h3 className="text-1xl text-black font-press-start p-4 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Create a New Tag:</h3>
                             <form className="space-y-6" action="#" onSubmit={(e) => handleSubmit(e, tagForm)}>
                                 <div>
-                                    <label htmlFor="tagName" className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white dark:font-bold"></label>
+                                    <label htmlFor="tagName" className="flex justify-center h-[23px] text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white dark:font-bold"></label>
                                     <input type="text" name="tagName" id="tagName" className={inputStyle} value={tagForm.tagName} placeholder="Black Tie" onChange={e => setTagForm({ ...tagForm, tagName: e.target.value })} required />
                                 </div>
                                 <button type="submit" className={buttonStyle}>Create</button>

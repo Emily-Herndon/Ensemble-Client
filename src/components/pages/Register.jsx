@@ -5,10 +5,6 @@ import axios from "axios"
 
 
 export default function Register({ currentUser, setCurrentUser }) {
-	const divStyles = "py-3"
-	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[100px] h-[30px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8"
-    const inputStyle = "border-b-2 border-l-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] h-[30px]"
-
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [userName, setUserName] = useState('')
@@ -52,13 +48,16 @@ export default function Register({ currentUser, setCurrentUser }) {
 			}
 		}
 	}
-	// useEffect(() => {
+
 		if (currentUser) {
-			//then send them to profile page
+			// Send them to profile page.
 			<Navigate to='/profile' />
 		}
-	// }, [])
 
+
+	const divStyles = "py-3"
+	const buttonStyle = "place-items-center m-2 text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[100px] h-[30px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8"
+    const inputStyle = "border-b-2 border-l-2 border-black text-black font-press-start text-[12px] p-2 placeholder-gray-400 w-[200px] h-[30px]"
 
 	return (
 		<div className="">

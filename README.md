@@ -18,13 +18,35 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 
 ## Technologies Used:
 
-- React
-- Node/Express
-- MongoDB
-- Tailwind
-- Axios
-- Cloudinary
-- Multer
+- MongoDB was used to manage document-oriented information
+- mongoose was used to handle the interface between the server and mongoDB
+- React was used for building composable user interfaces
+- Tailwind CSS was used to style
+- Mongoose was used to manage relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB
+- Axios was used to make HTTP requests from node. js or XMLHttpRequests from the browser
+- Jwt-decode helped decoding JWTs tokens
+- Bcrypt was used to build passwords for security
+- Cors was used to make requests from one website to another website in the browser
+- Dotenv allowed us to separate secrets from your source code
+- Express helped manage routing, sessions, HTTP requests, error handling, etc
+- Jsonwebtoken was used to to share security information between two parties: a client and a server.
+- Cloudary was used to upload images to be referenced as URLs
+- Multer was used to handle multipart form data on the server
+- flowbite/flowbite react
+- react-router-dom allowed for routing methods on the client side
+- react-icons was used for icons
+- react-responsive-carousel was used to create carousel
+
+
+## INSALLATION INSTRUCTIONS 
+
+- Fork and clone
+- Enter npm install in the terminal
+- Install MongoDb
+- Enter nodemon on the server
+- Enter npm run start on the client
+
+
 
 ## User Stories:
 

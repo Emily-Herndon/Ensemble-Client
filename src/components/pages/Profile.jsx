@@ -298,15 +298,15 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	}
 	// console.log(clothes)
 
+	const buttonStyles = "flex items-center justify-center text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
 	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
-	const tabStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
-
+	// const tabStyles = `${selectCat === "all" ? "bg-slate-700": "" } flex items-center justify-center text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold`
 	return (
 		<>
 			{currentUser && pageLoaded ?
-
+			
 				<div className='content-center'>
-					
+					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Welcome to your profile, {currentUser.userName}.</div>
 					{/* profile image container */}
 					<div
 						className='flex justify-center'
@@ -314,11 +314,11 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						{/* profile image */}
 					<img 
 						src={profileImage}
-						className='h-[200px] w-[200px] border-4 border-l-black border-b-black mt-8 dark:rounded-full dark:border-t-black dark:border-r-black object-cover'
+						className='h-[200px] w-[200px] border-4 border-l-black border-b-black mt-4 dark:rounded-full dark:border-white object-cover'
 						
 					/>
 					</div>
-					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold">Welcome to your profile, {currentUser.userName}.</div>
+
 
 					{clothingModal ?
 						<NewClothes
@@ -349,31 +349,31 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
 					{/* <button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button> */}
 					<div
-						className='flex flex-row justify-center border-b-2'
+						className='flex flex-row justify-center'
 					>
 
-						<button
-							className={buttonStyle}
+						<div
+							className={buttonStyles}
 							onClick={() => { setSelectCat("all") }}
-						>All</button>
+						>All</div>
 
 						<div
-							className={buttonStyle}
+							className={buttonStyles}
 							onClick={() => { setSelectCat("top") }}
 						>Tops</div>
 
 						<div
-							className={buttonStyle}
+							className={buttonStyles}
 							onClick={() => { setSelectCat("bottom") }}
 						>Bottoms</div>
 
 						<div
-							className={buttonStyle}
+							className={buttonStyles}
 							onClick={() => { setSelectCat("onePiece") }}
 						>One Pieces</div>
 
 						<div
-							className={buttonStyle}
+							className={buttonStyles}
 							onClick={() => { setSelectCat("shoes") }}
 						>Shoes</div>
 

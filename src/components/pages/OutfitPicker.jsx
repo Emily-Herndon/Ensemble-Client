@@ -45,7 +45,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 			console.log('submitted')
 			console.log(outfit)
 			const reqBody = {
-				outfitName: outfit.name,
+				outfitName: outfit.outfitName,
 				top: outfit.top,
 				bottom: outfit.bottom,
 				shoes: outfit.shoes,
@@ -165,14 +165,14 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				className="flex flex-col items-center"
 			>
 				<div
-					className="w-[20vw] h[20vh] m-8"
+					className="w-[20vw] h[20vh]"
 				>
 					<Carousel
 						showThumbs={false}
 						infiniteLoop={true}
 						showStatus={false}
 						showArrows={true}
-						emulateTouch={true}
+						
 					>
 						{filteredTops}
 					</Carousel>
@@ -185,7 +185,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 						infiniteLoop={true}
 						showStatus={false}
 						showArrows={true}
-						emulateTouch={true}
+						
 					>
 
 						{filteredBottoms}
@@ -199,7 +199,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 						infiniteLoop={true}
 						showStatus={false}
 						showArrows={true}
-						emulateTouch={true}
+						
 					>
 						{filteredShoes}
 					</Carousel>
