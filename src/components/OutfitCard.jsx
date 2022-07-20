@@ -5,6 +5,7 @@ export default function OutfitCard({clothing}) {
     <>
         <img 
             src={clothing.imageId.imgUrl}
+            className="h-[250px] w-[150px] object-contain"
         />
         {/* <p> {clothing.clothesName} </p> */}
     </>

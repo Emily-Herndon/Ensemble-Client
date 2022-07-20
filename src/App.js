@@ -81,7 +81,7 @@ function App() {
 					<Routes>
 						<Route
 							path="/"
-							element={<Feed />}
+							element={<Navigate to='/profile' />}
 						/>
 						<Route
 							path="/login"

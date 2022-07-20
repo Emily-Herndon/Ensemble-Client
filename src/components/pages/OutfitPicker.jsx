@@ -20,10 +20,10 @@ export default function OutfitPicker({ clothes, currentUser }) {
 		shoes: null
 	})
 
-	
 
-	const handleSelectClothing = async (clothing, catVal=null) => {
-		
+
+	const handleSelectClothing = async (clothing, catVal = null) => {
+
 		// console.log("clickity clackity do")
 		if (catVal === 'top') {
 			setOutfit({ ...outfit, top: clothing })
@@ -38,9 +38,9 @@ export default function OutfitPicker({ clothes, currentUser }) {
 	}
 	// console.log(outfit)
 
-	const handleOutfitSubmit = async(e) =>{
+	const handleOutfitSubmit = async (e) => {
 		e.preventDefault()
-		
+
 		try {
 			console.log('submitted')
 			console.log(outfit)
@@ -49,18 +49,18 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				top: outfit.top,
 				bottom: outfit.bottom,
 				shoes: outfit.shoes,
-				user: currentUser.id, 
+				user: currentUser.id,
 			}
 
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/outfits`, reqBody)
 
 			setOutfit({
-				outfitName: '', 
+				outfitName: '',
 				top: null,
 				bottom: null,
 				shoes: null
 			})
-			
+
 		} catch (error) {
 			console.warn(error)
 		}
@@ -78,7 +78,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 			<div
 				key={clothing._id}
 				onClick={() => { handleSelectClothing(clothing, "top") }}
-				className='w-[20vw] h[20vh]'
+				className=''
 			>
 				<OutfitCard
 					clothing={clothing}
@@ -94,7 +94,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 			<div
 				key={clothing._id}
 				onClick={() => { handleSelectClothing(clothing, "bottom") }}
-				className="w-[20vw] h[20vh]"
+				className="object-cover"
 			>
 				<OutfitCard
 					clothing={clothing}
@@ -111,7 +111,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 			<div
 				key={clothing._id}
 				onClick={() => { handleSelectClothing(clothing, "shoes") }}
-				className="w-[20vw] h[20vh]"
+				className="object-cover"
 			>
 				<OutfitCard
 					clothing={clothing}
@@ -121,65 +121,74 @@ export default function OutfitPicker({ clothes, currentUser }) {
 	})
 
 	return (
-		<div className='m-6 text-1xl text-black font-press-start p-8 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold'>
+		<div className='m-6 text-1xl text-black font-press-start mt-8 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold'>
 			What are you going to wear today?
 			<div
-				className='flex justify-center pt-10'
-			>
-			<div className=''>
-				<OutfitPreview
-					outfit={outfit}
-					setOutfit = {setOutfit}
-					handleSubmit={handleOutfitSubmit}
-					// handleSubmit={handleSelectClothing}
-				/>
-				
-			</div>
-			<div
-				className="flex flex-col items-start"
+				className='flex justify-around'
 			>
 				<div
-					className="w-[20vw] h[20vh]"
+					className=''
 				>
-					<Carousel
-						showThumbs={false}
-						infiniteLoop={true}
-						showStatus={false}
-						showArrows={true}
-						
-					>
-						{filteredTops}
-					</Carousel>
-				</div>
-				<div
-					className="w-[20vw] h[20vh]"
-				>
-					<Carousel
-						showThumbs={false}
-						infiniteLoop={true}
-						showStatus={false}
-						showArrows={true}
-						
-					>
 
-						{filteredBottoms}
-					</Carousel>
+					<OutfitPreview
+						outfit={outfit}
+						setOutfit={setOutfit}
+						handleSubmit={handleOutfitSubmit}
+					// handleSubmit={handleSelectClothing}
+					/>
+
 				</div>
+				
 				<div
-					className="w-[20vw] h[20vh]"
+					className="mt-16"
 				>
-					<Carousel
-						showThumbs={false}
-						infiniteLoop={true}
-						showStatus={false}
-						showArrows={true}
-						
+					<div
+						className="my-2"
 					>
-						{filteredShoes}
-					</Carousel>
+						<Carousel
+							showThumbs={false}
+							infiniteLoop={true}
+							showStatus={false}
+							showArrows={true}
+							width={150}
+							height={150}
+						>
+							{filteredTops}
+						</Carousel>
+					</div>
+					<div
+						className="my-2"
+					>
+						<Carousel
+							showThumbs={false}
+							infiniteLoop={true}
+							showStatus={false}
+							showArrows={true}
+							width={150}
+							height={150}
+						>
+
+							{filteredBottoms}
+						</Carousel>
+					</div>
+					<div
+						className="my-2"
+					>
+						<Carousel
+							showThumbs={false}
+							infiniteLoop={true}
+							showStatus={false}
+							showArrows={true}
+							width={150}
+							height={250}
+
+						>
+							{filteredShoes}
+						</Carousel>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
+
 	)
 }

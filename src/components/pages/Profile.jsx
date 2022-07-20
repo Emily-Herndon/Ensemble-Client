@@ -11,6 +11,7 @@ import ShowClothingCards from '../ShowClothingCards'
 import TagsModal from '../TagsModal'
 
 export default function Profile({ clothes, setClothes, clothesForm, setClothesForm, currentUser, setCurrentUser, defaultProfileImg }) {
+
 	const [msg, setMsg] = useState('')
 	const [clothingModal, setClothingModal] = useState(false)
 	const [editClothingModal, setEditClothingModal] = useState(false)
@@ -123,15 +124,11 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const handlePasswordClick = () => {
 		setPasswordModal(true)
 	}
-	// when you click on the create a tag button 
-	const handleCreateTagsClick = () => {
-		setTagModal(true)
-		setTagModalType("create")
-	}
+	
 	// when you click on the add tags button
 	const handleAddTagsClick = (clothing) => {
 		setTagModal(true)
-		setTagModalType("add")
+		setClothing(clothing)
 		setSelectedTags(clothing.tags)
 	}
 	// when you create a tag
@@ -163,8 +160,18 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const handleEditTagsSubmit = async (e, selectedTags) => {
 		e.preventDefault()
 		try {
-			console.log(selectedTags)
-			
+			const userName = currentUser.userName
+			// console.log(selectedTags)
+			const reqBody = {
+				tags: selectedTags,
+				clothing: clothing,
+			}
+			setTagModal(false)
+			// console.log(reqBody)
+			const appliedTags = await axios.put(`${process.env.REACT_APP_SERVER_URL}/tags`, reqBody)
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/profile/${userName}`)
+			setClothes(response.data.clothes)
+			setTags(response.data.tags)
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -312,7 +319,6 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					<img 
 						src={profileImage}
 						className='h-[200px] w-[200px] border-4 border-l-black border-b-black mt-4 dark:rounded-full dark:border-white object-cover'
-						
 					/>
 					</div>
 

@@ -21,9 +21,9 @@ export default function Navbar({ currentUser, handleLogout }) {
 	//  If the user IS logged in, render the links below.
 	const loggedIn = (
 		<>
-			<Link
+			{/* <Link
 				className={navStyle}
-				to="/">Feed</Link>
+				to="/">Feed</Link> */}
 			<Link
 				className={navStyle}
 				to="/Profile">Profile</Link>
@@ -46,7 +46,7 @@ export default function Navbar({ currentUser, handleLogout }) {
 	return (
 		<div className="">
 			<Nav fluid={true} rounded={true}>
-				<Nav.Brand href="/">
+				<Nav.Brand href="/profile">
 					<span className="font-press-start text-transparent text-1xl bg-clip-text bg-gradient-to-r from-gray-600 to-black my-6 dark:font-sans dark:text-2xl dark:text-white dark:hover:text-blue-500">
 						Ensemble
 					</span>
