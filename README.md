@@ -1,5 +1,9 @@
 # Ensemble-Client
 
+## Live Link
+[Link](https://62d72ddfb37fce2eea6ee563--ensemble-closet.netlify.app/)
+
+
 [Server Repo](https://github.com/Emily-Herndon/Ensemble-Server)
 
 ### Developed by:
@@ -32,9 +36,9 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - Jsonwebtoken was used to to share security information between two parties: a client and a server.
 - Cloudary was used to upload images to be referenced as URLs
 - Multer was used to handle multipart form data on the server
-- flowbite/flowbite react
+- flowbite/flowbite-react was used for modals and other styling things
 - react-router-dom allowed for routing methods on the client side
-- react-icons was used for icons
+live - react-icons was used for icons
 - react-responsive-carousel was used to create carousel
 
 
@@ -62,9 +66,9 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 
 ## MVP Requirements:
 
-- [ ] User able to upload photos of each of their clothing items
-- [ ] User able to categorize outfit pieces
-- [ ] The app has full CRUD functionality
+- [ x ] User able to upload photos of each of their clothing items
+- [ x ] User able to categorize outfit pieces
+- [ x ] The app has full CRUD functionality
 
 ## Stretch Goals:
 
@@ -82,9 +86,7 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 ![](https://i.imgur.com/nahQOsL.png)
 
 ## RESTful Routing Chart:
-
-![](https://i.imgur.com/GV0Om2R.png)
+![](https://i.imgur.com/y1G4DAX.png)
 
 ## ERD:
-
-![](https://i.imgur.com/T6E4Cpw.png)
+![](https://i.imgur.com/WlPTRpP.png)

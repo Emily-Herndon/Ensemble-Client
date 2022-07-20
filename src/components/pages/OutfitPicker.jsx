@@ -83,7 +83,6 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				<OutfitCard
 					clothing={clothing}
 				/>
-				{/* <img src={clothing.imageId.imgUrl}/> */}
 			</div>
 		)
 	})
@@ -121,36 +120,11 @@ export default function OutfitPicker({ clothes, currentUser }) {
 		)
 	})
 
-	// const filteredOnePiece = clothes.filter((clothing) => {
-	// 	return clothing.category === 'one piece'
-	// }).map((clothing) => {
-	// 	return (
-	// 		<>
-	// 			<OutfitCard
-	// 				clothing={clothing}
-	// 			/>
-	// 		</>
-	// 	)
-	// })
-
-	// const filteredAccessories= clothes.filter((clothing) => {
-	// 	return clothing.category === 'accessories'
-	// }).map((clothing) => {
-	// 	return (
-	// 		<>
-	// 			<OutfitCard
-	// 				clothing={clothing}
-	// 			/>
-	// 		</>
-	// 	)
-	// })
-
-
 	return (
-		<div className='m-6 text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold'>
+		<div className='m-6 text-1xl text-black font-press-start p-8 dark:font-sans dark:text-2xl dark:text-slate-800 dark:font-bold'>
 			What are you going to wear today?
 			<div
-				className='justify-center'
+				className='flex justify-center pt-10'
 			>
 			<div className=''>
 				<OutfitPreview
@@ -162,7 +136,7 @@ export default function OutfitPicker({ clothes, currentUser }) {
 				
 			</div>
 			<div
-				className="flex flex-col items-center"
+				className="flex flex-col items-start"
 			>
 				<div
 					className="w-[20vw] h[20vh]"

@@ -95,7 +95,7 @@ export default function Account({ setAccountEdit, setCurrentUser, currentUser, p
     }
   }
 
-    // set timed message function
+    // Set timed message function.
     const setTimedMessage = (message, time) => {
       setMsg(message)
       setSubmitted(true)

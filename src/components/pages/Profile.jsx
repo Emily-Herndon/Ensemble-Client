@@ -163,8 +163,8 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 	const handleEditTagsSubmit = async (e, selectedTags) => {
 		e.preventDefault()
 		try {
-			
 			console.log(selectedTags)
+			
 		} catch (err) {
 			console.warn(err)
 			if (err.response) {
@@ -296,22 +296,19 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 		bottom: 2,
 		top: 1
 	}
-	// console.log(clothes)
 
 	const buttonStyles = "flex items-center justify-center text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
 	const buttonStyle = "text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold"
-	// const tabStyles = `${selectCat === "all" ? "bg-slate-700": "" } flex items-center justify-center text-[8px] border-2 border-b-black border-l-black border-t-white border-r-white w-[105px] h-[34px] text-black m-2 font-press-start font-light p-2 hover:border-dotted my-8 dark:font-sans dark:text-white dark:bg-slate-800 dark:border-solid dark:border-slate-800 dark:hover:bg-slate-700 dark:rounded-lg dark:text-[14px] dark:h-[45px] dark:w-[150px] leading-none align-baseline dark:font-bold`
+	
 	return (
 		<>
 			{currentUser && pageLoaded ?
 			
 				<div className='content-center'>
 					<div className="text-1xl text-black font-press-start p-6 dark:font-sans dark:text-2xl dark:text-white dark:font-bold">Welcome to your profile, {currentUser.userName}.</div>
-					{/* profile image container */}
 					<div
 						className='flex justify-center'
 					>
-						{/* profile image */}
 					<img 
 						src={profileImage}
 						className='h-[200px] w-[200px] border-4 border-l-black border-b-black mt-4 dark:rounded-full dark:border-white object-cover'
@@ -347,7 +344,7 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 					<button className={buttonStyle} type="button" data-modal-toggle="password-model" onClick={() => handlePasswordClick()}>Change Password</button>
 					<button className={buttonStyle} type="button" onClick={() => handleAccountClick()}>Edit Account</button>
 					<button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleAddClothesClick()}>Add Clothing</button>
-					{/* <button className={buttonStyle} type="button" data-modal-toggle="account-model" onClick={() => handleCreateTagsClick()}>Create Tags</button> */}
+		
 					<div
 						className='flex flex-row justify-center'
 					>
@@ -437,7 +434,6 @@ export default function Profile({ clothes, setClothes, clothesForm, setClothesFo
 						<div
 							className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
 						>
-							{/* {sortedClothes} */}
 							<ShowClothingCards
 								clothes={showCat}
 								handleEditClothesClick={handleEditClothesClick}
