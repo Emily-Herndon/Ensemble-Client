@@ -8,7 +8,7 @@
 
 ### Developed by:
 
-Billy Lu, Emily Herndon, Emily Kiss, Angelika Selviyan
+[Billy Lu](https://github.com/bluz225), [Emily Herndon](https://github.com/Emily-Herndon), [Emily Kiss](https://github.com/emilykiss), [Angelika Selviyan](https://github.com/ASelviyan)
 
 ### Description:
 
@@ -34,7 +34,7 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - Dotenv allowed us to separate secrets from your source code
 - Express helped manage routing, sessions, HTTP requests, error handling, etc
 - Jsonwebtoken was used to to share security information between two parties: a client and a server.
-- Cloudary was used to upload images to be referenced as URLs
+- Cloudinary was used to upload images to be referenced as URLs
 - Multer was used to handle multipart form data on the server
 - flowbite/flowbite-react was used for modals and other styling things
 - react-router-dom allowed for routing methods on the client side
