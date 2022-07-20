@@ -38,22 +38,18 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - Multer was used to handle multipart form data on the server
 - flowbite/flowbite-react was used for modals and other styling things
 - react-router-dom allowed for routing methods on the client side
-live - react-icons was used for icons
+- react-icons was used for icons
 - react-responsive-carousel was used to create carousel
 
 
 ## INSALLATION INSTRUCTIONS 
-
 - Fork and clone
 - Enter npm install in the terminal
 - Install MongoDb
 - Enter nodemon on the server
 - Enter npm run start on the client
 
-
-
 ## User Stories:
-
 - As a logged out user, I want to be able to register an account.
 - As a logged out user, I want to be able to log in to my account.
 - As a logged in user, I want to upload each clothing piece in my closet.
@@ -66,17 +62,21 @@ live - react-icons was used for icons
 
 ## MVP Requirements:
 
-- [ x ] User able to upload photos of each of their clothing items
-- [ x ] User able to categorize outfit pieces
-- [ x ] The app has full CRUD functionality
+- [x] User able to upload photos of each of their clothing items
+- [x] User able to categorize outfit pieces
+- [x] The app has full CRUD functionality
 
 ## Stretch Goals:
 
-- [ ] User able to see pieces together/ clothing pieces displayed in stacked carousels
+- [X] User able to see pieces together/ clothing pieces displayed in stacked carousels
+- [X] User able to save outfits
+- [X] User able tag clothing items
+- [X] User able to change the status of clothing items
+- [X] User able to change profile picture
+- [X] Clothing displays on a carousel
 - [ ] Accessories component
 - [ ] AI models for clothing
 - [ ] Users are able to publicly post outfits
-- [ ] Clothing displays on a carousel
 - [ ] User able to visualize outfit on themselves
 - [ ] User able to choose from selection of premade color themes
 - [ ] User able to make their own color theme

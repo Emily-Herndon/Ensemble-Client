@@ -106,7 +106,6 @@ export default function NewClothes({ handleSubmit, clothesForm, setClothesForm, 
 												<img
 												className="w-auto h-[200px]"
 												src={clothesForm.imageId.imgUrl}/>
-		
 												:
 												<FileUploader
 													setImgFile={setImgFile}
