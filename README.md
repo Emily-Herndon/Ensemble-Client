@@ -6,9 +6,13 @@
 
 [Server Repo](https://github.com/Emily-Herndon/Ensemble-Server)
 
+***
+
 ### Developed by:
 
 [Billy Lu](https://github.com/bluz225), [Emily Herndon](https://github.com/Emily-Herndon), [Emily Kiss](https://github.com/emilykiss), [Angelika Selviyan](https://github.com/ASelviyan)
+
+***
 
 ### Description:
 
@@ -20,7 +24,11 @@ With Ensemble you wont have this problem. You can access your whole closet at th
 
 Ensemble allows you to add, delete and constantly virtually update your closet.
 
-## Technologies Used:
+***
+
+<details>
+
+<summary> Technologies Used: </summary>
 
 - MongoDB was used to manage document-oriented information
 - mongoose was used to handle the interface between the server and mongoDB
@@ -41,6 +49,9 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - react-icons was used for icons
 - react-responsive-carousel was used to create carousel
 
+</details>
+
+***
 
 ## INSALLATION INSTRUCTIONS 
 - Fork and clone
@@ -48,6 +59,8 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - Install MongoDb
 - Enter nodemon on the server
 - Enter npm run start on the client
+
+***
 
 ## User Stories:
 - As a logged out user, I want to be able to register an account.
@@ -60,11 +73,15 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - As a logged in user, I want be able to visualize an outfit without leaving my bed.
 - As a logged in user, I want be able to save my favorite combinations of clothing.
 
+***
+
 ## MVP Requirements:
 
 - [x] User able to upload photos of each of their clothing items
 - [x] User able to categorize outfit pieces
 - [x] The app has full CRUD functionality
+
+***
 
 ## Stretch Goals:
 
@@ -81,12 +98,55 @@ Ensemble allows you to add, delete and constantly virtually update your closet.
 - [ ] User able to choose from selection of premade color themes
 - [ ] User able to make their own color theme
 
-## Views:
+***
+<details>
+<summary> Views: </summary>
 
-![](https://i.imgur.com/nahQOsL.png)
+### Register
+
+![Register](https://i.imgur.com/HjH8w4y.png)
+
+### Login
+
+![Login](https://i.imgur.com/65HijhU.png)
+
+### Profile Light/Retro Mode
+![Profile Light/Retro 1](https://i.imgur.com/FzTMgce.png)
+![Profile Light/Retro 2](https://i.imgur.com/uQceWe0.png)
+
+### Profile Dark/Modern Mode
+![Profile Dark/Modern 1](https://i.imgur.com/26PRKBu.png)
+![Profile Dark.Modern 2](https://i.imgur.com/vU5zmwb.png)
+
+### Edit Account
+![Edit Account](https://i.imgur.com/caasanR.png)
+
+### Change Password
+![Change Password](https://i.imgur.com/K63ZVHM.png)
+
+### Add Clothing Item
+![Add Clothing Item](https://i.imgur.com/nGx2ux3.png)
+
+### Edit Clothing Item
+![Edit Clothing Item](https://i.imgur.com/EzBO382.png)
+
+### Add/Edit Tags
+![Add/Edit Tags](https://i.imgur.com/lRGV6rk.png)
+
+### Browse Closet
+![Browse Closet](https://i.imgur.com/EWt46r2.png)
+
+### Create Outfit
+![Create Outfit](https://i.imgur.com/pnodOWJ.png)
+
+</details>
+
+***
 
 ## RESTful Routing Chart:
-![](https://i.imgur.com/y1G4DAX.png)
+![RESTful Routing Chart](https://i.imgur.com/y1G4DAX.png)
+
+***
 
 ## ERD:
-![](https://i.imgur.com/WlPTRpP.png)
+![ERD](https://i.imgur.com/WlPTRpP.png)
